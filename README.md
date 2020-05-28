@@ -1,52 +1,54 @@
-# Создание социальной сети знакомств.
+# Dating social network.
 
-## Базовый функционал.
-
-Упрощенная регистрация пользователей через форму и соц. сети.
-
-Редактирование профиля и загрузка медиа-контента (фото, видео) с диска и с камеры.
-
-Формирование постов блога.
-
-Чат с пользователями противоположного пола. Обмен сообщениями, смайликами и медиа-контентом.
-
-Видео-аудио трансляция с использованием WebRTC.
-
-Просмотр пользователей в онлайне и контакт листа в чате.
-
-Получение уведомлений о лайках, комментариях, сообщениях и т.д.
-
-Поиск профилей.
-
-## Коммерческий функционал
-
-Пополнение счета мужчиной.
-
-Снятие кредитов за различные услуги (чат, просмотр приватных фото и видео и т.д.)
-
-Просмотр истории платежей.
-
-Начисление коммисионных девушке с платежей мужчины.
+## Basic functions.
 
 
-## Архитектура.
+Simple registration by form and Google Auth.
 
-Проект будет монолитным и содержать как фронтенд так и бекенд в одном репозитории.
+Editing profile and downloading media content.
 
-### Фронтенд Angular (JS TypeScript).
+Creating blog posts with media.
 
-1. Приложение под web
+Real-time chating with the people online. 
 
-2. Приложение под моб. устройство (Ionic)
+Video-audio broadcasting via WebRTC. 
+
+Browsing people online and contact list on the chat page. 
+
+Geting the different types of notifications about new messages, likes and others.
+
+Profile searching.
+
+## Commertial functions.
+
+Replanishing account of a male.
+
+Charging credits for different services like chat, private photo and so on.
+
+History of payments.
+
+Comission for femails.
 
 
-### Бекенд Python.
+## Architecture.
 
-Django Rest Framework
+Project will be a monolite and contains backend and frontend in one repo.
 
-Django channels
+### Frontend Angular (JS TypeScript).
 
-WebRTC
+1. web app (pure Angular)
+
+2. mobile app (Ionic)
+
+
+### Backend Python.
+
+Django Rest Framework - for the REST API
+
+Django channels - for the web-sockets
+
+WebRTC - for the broadcasting
+
 
 
 
