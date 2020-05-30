@@ -1,0 +1,66 @@
+{
+    "administratiors": [
+        {
+           "username": "admin",
+           "password": "admin"
+        }
+    ],
+    "male": [
+        {
+            "username": "man1",
+            "password": "man1",
+            "gender": "male",
+            "publicname": "man1",
+            "is_online": "false",
+            "account": "0",
+            "birthday": "1977-01-01"
+        }, 
+        {
+            "username": "man2",
+            "password": "man2",
+            "gender": "male",
+            "publicname": "man2",
+            "is_online": "false",
+            "account": "0",
+            "birthday": "1977-01-01"
+        }, 
+        {
+            "username": "man3",
+            "password": "man3",
+            "gender": "male",
+            "publicname": "man3",
+            "is_online": "false",
+            "account": "0",
+            "birthday": "1977-01-01"
+        }
+    ],
+    "female": [
+        {
+            "username": "woman1",
+            "password": "woman1",
+            "gender": "female",
+            "publicname": "woman1",
+            "is_online": "false",
+            "account": "0",
+            "birthday": "1977-01-01"
+        }, 
+        {
+            "username": "woman2",
+            "password": "woman2",
+            "gender": "female",
+            "publicname": "woman2",
+            "is_online": "false",
+            "account": "0",
+            "birthday": "1977-01-01"
+        }, 
+        {
+            "username": "woman3",
+            "password": "woman3",
+            "gender": "female",
+            "publicname": "woman3",
+            "is_online": "false",
+            "account": "0",
+            "birthday": "1977-01-01"
+        }        
+    ]
+}
