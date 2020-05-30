@@ -125,3 +125,11 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 ASGI_APPLICATION = "backend.channels_app.application"
+
+FIXTURES_PATH = os.path.join(BASE_DIR, '../fixtures', 'users.json')
+
+REST_FRAMEWORK = {
+    'EXCEPTION_HANDLER': 'backend.error_handler.custom_exception_handler'
+}
+
+API_URL = 'http://localhost:7777/v1/'
