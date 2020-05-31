@@ -21,8 +21,15 @@ schema_view = get_schema_view(
    permission_classes=(permissions.AllowAny,),
 )
 
+from web.views import index_web, index_mobi
 
 urlpatterns = [
+    path('web/', index_web),
+    path('mobi/', index_mobi),
+    path('mobi/folder/Inbox', index_mobi),
+
+    
+
     path('v1/',include([
         path('account/',include('account.urls')),
         path('usermedia/',include('usermedia.urls'))
