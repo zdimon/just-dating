@@ -38,10 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
     'channels',
     'drf_yasg',
     'account',
-    'online'
+    'online',
+    'usermedia'
 ]
 
 MIDDLEWARE = [
@@ -126,10 +128,26 @@ STATIC_URL = '/static/'
 
 ASGI_APPLICATION = "backend.channels_app.application"
 
-FIXTURES_PATH = os.path.join(BASE_DIR, '../fixtures', 'users.json')
+FIXTURES_PATH = os.path.join(BASE_DIR, '../fixtures')
 
 REST_FRAMEWORK = {
-    'EXCEPTION_HANDLER': 'backend.error_handler.custom_exception_handler'
+    'EXCEPTION_HANDLER': 'backend.error_handler.custom_exception_handler',
+    'DEFAULT_PAGINATION_CLASS': 'backend.paginator.CustomPagination',
+    'PAGE_SIZE': 3,
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
 }
 
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_URL = '/media/'
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static")
+]
+
+
 API_URL = 'http://localhost:7777/v1/'
+BACKEND_URL = 'http://localhost:7777'

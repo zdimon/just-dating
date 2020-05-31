@@ -10,7 +10,8 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         print('Loading users')
-        with open(FIXTURES_PATH,'r') as f:
+        user_file = os.path.join(FIXTURES_PATH, 'users.json')
+        with open(user_file,'r') as f:
             jdata = json.loads(f.read())
             UserProfile.objects.all().delete()
             for user in jdata['administratiors']:
