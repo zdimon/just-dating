@@ -4,3 +4,4 @@ drf-yasg
 channels
 requests
 Pillow==7.1.2
+bs4

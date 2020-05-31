@@ -17,7 +17,8 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/web",
+            "outputPath": "../backend/static/front_dist/web",
+            "deployUrl": "/static/front_dist/web/",
             "index": "projects/web/src/index.html",
             "main": "projects/web/src/main.ts",
             "polyfills": "projects/web/src/polyfills.ts",
@@ -25,7 +26,8 @@
             "aot": false,
             "assets": [
               "projects/web/src/favicon.ico",
-              "projects/web/src/assets"
+              "projects/web/src/assets",
+              "../backend/static/front_dist/web/"
             ],
             "styles": [
               "projects/web/src/styles.scss"
@@ -90,7 +92,8 @@
             "karmaConfig": "projects/web/karma.conf.js",
             "assets": [
               "projects/web/src/favicon.ico",
-              "projects/web/src/assets"
+              "projects/web/src/assets",
+              "../backend/static/front_dist/mobi"
             ],
             "styles": [
               "projects/web/src/styles.scss"
@@ -139,7 +142,8 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/mobi",
+            "outputPath": "../backend/static/front_dist/mobi",
+            "deployUrl": "/static/front_dist/mobi/",
             "index": "projects/mobi/src/index.html",
             "main": "projects/mobi/src/main.ts",
             "polyfills": "projects/mobi/src/polyfills.ts",
@@ -153,6 +157,7 @@
                 "input": "node_modules/ionicons/dist/ionicons/svg",
                 "output": "./svg"
               }
+
             ],
             "styles": [
               "projects/mobi/src/styles.scss",
