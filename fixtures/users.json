@@ -13,7 +13,10 @@
             "publicname": "man1",
             "is_online": "false",
             "account": "0",
-            "birthday": "1977-01-01"
+            "birthday": "1977-01-01",
+            "images": [
+                {"image":"man1.jpeg", "is_main": "true", "is_approved": "true", "title": "man photo"}
+            ]
         }, 
         {
             "username": "man2",
@@ -22,7 +25,10 @@
             "publicname": "man2",
             "is_online": "false",
             "account": "0",
-            "birthday": "1977-01-01"
+            "birthday": "1977-01-01",
+            "images": [
+                {"image":"man2.jpeg", "is_main": "true", "is_approved": "true", "title": "man photo"}
+            ]
         }, 
         {
             "username": "man3",
@@ -31,7 +37,10 @@
             "publicname": "man3",
             "is_online": "false",
             "account": "0",
-            "birthday": "1977-01-01"
+            "birthday": "1977-01-01",
+            "images": [
+                {"image":"man3.jpeg", "is_main": "true", "is_approved": "true", "title": "man photo"}
+            ]
         }
     ],
     "female": [
@@ -42,7 +51,10 @@
             "publicname": "woman1",
             "is_online": "false",
             "account": "0",
-            "birthday": "1977-01-01"
+            "birthday": "1977-01-01",
+            "images": [
+                {"image":"woman1.jpeg", "is_main": "true", "is_approved": "true", "title": "woman photo"}
+            ]
         }, 
         {
             "username": "woman2",
@@ -51,7 +63,10 @@
             "publicname": "woman2",
             "is_online": "false",
             "account": "0",
-            "birthday": "1977-01-01"
+            "birthday": "1977-01-01",
+            "images": [
+                {"image":"woman2.jpeg", "is_main": "true", "is_approved": "true", "title": "woman photo"}
+            ]
         }, 
         {
             "username": "woman3",
@@ -60,7 +75,10 @@
             "publicname": "woman3",
             "is_online": "false",
             "account": "0",
-            "birthday": "1977-01-01"
+            "birthday": "1977-01-01",
+            "images": [
+                {"image":"woman3.jpeg", "is_main": "true", "is_approved": "true", "title": "woman photo"}
+            ]
         }        
     ]
 }
