@@ -17,7 +17,10 @@
   </ion-header>
 
   <div id="container">
-    <strong class="capitalize">{{ folder }}</strong>
-    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <ion-list>
+      <ion-item  *ngFor="let user of users">
+        <ion-label><img [src]="user.main_photo" /></ion-label>
+      </ion-item>
+    </ion-list>
   </div>
 </ion-content>

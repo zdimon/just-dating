@@ -32,9 +32,9 @@ def index_web(request):
 
         script_item.append('src="%s"' % js['src'])
         out_html = '<script'+' '.join(script_item)+'></script>'
-        print(script_item)
+        #print(script_item)
         out.append(out_html)
-    print(out)
+    #print(out)
 
     return render(request, 'index_web.html',{'scripts': out})
 
@@ -66,8 +66,8 @@ def index_mobi(request):
 
         script_item.append('src="%s"' % js['src'])
         out_html = '<script'+' '.join(script_item)+'></script>'
-        print(script_item)
+        #print(script_item)
         out.append(out_html)
-    print(out)
+    #print(out)
 
     return render(request, 'index_mobi.html',{'scripts': out})

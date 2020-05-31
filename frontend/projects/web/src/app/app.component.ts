@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {ApiService} from '../../../core/src/lib/services/api.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'web';
+  users = [];
+  constructor(private apiService: ApiService){
+    this.apiService.getUserList().subscribe((data: any) => {
+      this.users = data;
+    });
+  }
 }
