@@ -17,7 +17,8 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/web",
+            "outputPath": "../backend/static/front_dist/web",
+            "deployUrl": "/static/front_dist/web/",
             "index": "projects/web/src/index.html",
             "main": "projects/web/src/main.ts",
             "polyfills": "projects/web/src/polyfills.ts",
@@ -139,7 +140,8 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/mobi",
+            "outputPath": "../backend/static/front_dist/mobi",
+            "deployUrl": "/static/front_dist/mobi/",
             "index": "projects/mobi/src/index.html",
             "main": "projects/mobi/src/main.ts",
             "polyfills": "projects/mobi/src/polyfills.ts",
