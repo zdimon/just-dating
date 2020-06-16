@@ -10,14 +10,26 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">{{ folder }}</ion-title>
-    </ion-toolbar>
-  </ion-header>
+ 
 
+  
   <div id="container">
+    
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Card Title</ion-card-title>
+      </ion-card-header>
+    
+      <ion-card-content>
+        <core-registration-form></core-registration-form>
+      </ion-card-content>
+    </ion-card>
+
     <ion-list>
+      <ion-item>
+        
+      </ion-item>
       <ion-item  *ngFor="let user of users">
         <ion-label><img [src]="user.main_photo" /></ion-label>
       </ion-item>

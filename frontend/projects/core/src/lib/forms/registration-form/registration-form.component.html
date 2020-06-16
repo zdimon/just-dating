@@ -1,0 +1,41 @@
+
+<form fxLayout="column" fxLayoutGap="10px">
+
+        <mat-form-field appearance="fill">
+            <mat-label>Name</mat-label>
+            <mat-icon matSuffix>check</mat-icon>
+            <mat-hint>Your public name</mat-hint>
+            <input  [(ngModel)]="name" name="name" matInput placeholder="Input">
+        </mat-form-field>
+    
+        <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <mat-icon matSuffix>alternate_email</mat-icon>
+            <input [(ngModel)]="email" name="email" matInput placeholder="Input">
+        </mat-form-field>
+  
+        <mat-form-field appearance="fill">
+            <mat-label>Password</mat-label>
+            <mat-icon matSuffix>lock</mat-icon>
+            <input  [(ngModel)]="password" name="password" matInput placeholder="Input">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Gender</mat-label>
+            <mat-select [(ngModel)]="gender" name="gender" >
+              <mat-option value="male">male</mat-option>
+              <mat-option value="female">female</mat-option>
+            </mat-select>
+        </mat-form-field>
+        
+        <mat-form-field color="accent">
+            <mat-label>Birthday</mat-label>
+            <input  [(ngModel)]="birthday"  name="birthday"  matInput [matDatepicker]="picker2">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2 color="primary"></mat-datepicker>
+        </mat-form-field>
+        
+
+        <button mat-raised-button (click)="submit()" color="accent">Submit</button>
+
+</form>
