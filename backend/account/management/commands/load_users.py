@@ -4,6 +4,7 @@ import json
 from account.models import UserProfile
 import requests
 from backend.settings import API_URL
+import os
 
 
 class Command(BaseCommand):
