@@ -15,4 +15,10 @@ export class ApiService {
       map((rez: any) => rez.payload)
     );
   }
+
+  registration(data: any) {
+    return this.http.post(`${environment.backendUrl}v1/account/registration`, data);
+  }
+
+
 }

@@ -38,7 +38,7 @@ def index_web(request):
 
     return render(request, 'index_web.html',{'scripts': out})
 
-def index_mobi(request):
+def index_mobi(request,slug='index'):
     path = os.path.join(BASE_DIR, 'static','front_dist','mobi','index.html')
     with open(path,'r') as f:
         html = f.read()

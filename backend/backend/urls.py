@@ -27,6 +27,7 @@ urlpatterns = [
     path('web/', index_web),
     path('mobi/', index_mobi),
     path('mobi/folder/Inbox', index_mobi),
+    path('mobi/<slug:slug>', index_mobi),
 
     
 

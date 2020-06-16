@@ -1,10 +1,11 @@
+# author: Dmitry Zharikov zdimon77@gmail.com
 from rest_framework import serializers
 from account.models import UserProfile
 
-class UserRequesterializer(serializers.Serializer):
+class RegistrationRequestSerializer(serializers.Serializer):
     username = serializers.CharField()
     password = serializers.CharField()
-    birthday = serializers.DateField()
+    birthday = serializers.CharField() # if use DataField we can not define the validator
     gender = serializers.ChoiceField(choices=['male','female'])
 
     def validate_username(self, value):
@@ -20,8 +21,14 @@ class UserRequesterializer(serializers.Serializer):
 
         if error:
             raise serializers.ValidationError("This username is already exists!!!")
-
         return value
+
+    def validate_birthday(self, value):
+        """
+            convert 2020-06-16T21:00:00.000Z -> 2020-06-16
+        """
+        return value.split('T')[0]
+
 
     def save(self):
         profile = UserProfile()
@@ -31,3 +38,4 @@ class UserRequesterializer(serializers.Serializer):
         profile.gender = self.validated_data['gender']
         profile.save()
         return profile
+
