@@ -1,0 +1,2 @@
+cd frontend
+ng build mobi --watch
