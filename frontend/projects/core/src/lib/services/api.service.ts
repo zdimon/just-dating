@@ -20,5 +20,8 @@ export class ApiService {
     return this.http.post(`${environment.backendUrl}v1/account/registration`, data);
   }
 
+  login(data: any) {
+    return this.http.post(`${environment.backendUrl}v1/account/login`, data);
+  }
 
 }

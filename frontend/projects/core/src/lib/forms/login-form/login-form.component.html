@@ -1,0 +1,27 @@
+
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" fxLayout="column" fxLayoutGap="10px">
+
+    <mat-form-field appearance="fill">
+        <mat-label>Login</mat-label> 
+        <mat-icon matSuffix>alternate_email</mat-icon>
+        <input formControlName="username" matInput placeholder="email">
+        <mat-error *ngIf="loginForm.controls.username.errors?.required &&
+                    loginForm.controls.username.touched">      
+            Email is required
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <mat-icon matSuffix>lock</mat-icon>
+        <input formControlName="password" matInput placeholder="password">
+        <mat-error *ngIf="loginForm.controls.password.errors?.required &&
+                    loginForm.controls.password.touched">      
+             Email is required
+        </mat-error>
+    </mat-form-field>
+
+    <button [disabled]="!loginForm.valid" mat-raised-button color="accent">Login</button>
+
+</form>
+

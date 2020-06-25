@@ -13,8 +13,8 @@ export class AppComponent implements OnInit {
   public selectedIndex = 0;
   public appPages = [
     {
-      title: 'Inbox',
-      url: '/folder/Inbox',
+      title: 'Login',
+      url: '/login',
       icon: 'mail'
     },
     {
@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
       icon: 'paper-plane'
     },
   ];
-  
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
