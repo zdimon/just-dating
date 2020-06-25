@@ -33,7 +33,7 @@ class RegistrationRequestSerializer(serializers.Serializer):
     def save(self):
         profile = UserProfile()
         profile.username = self.validated_data['username']
-        profile.password = self.validated_data['password']
+        profile.set_password(self.validated_data['password'])
         profile.birthday = self.validated_data['birthday']
         profile.gender = self.validated_data['gender']
         profile.save()
