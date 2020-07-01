@@ -13,6 +13,8 @@ import { Store } from '@ngrx/store';
 import { selectIsAuth, selectSessionUser } from './../../../core/src/store/selectors/session.selector';
 import { UserState } from './../../../core/src/store/states/user.state';
 
+// Services
+import { AuthService } from './../../../core/src/lib/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -20,19 +22,6 @@ import { UserState } from './../../../core/src/store/states/user.state';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent implements OnInit {
-  public selectedIndex = 0;
-  public appPages = [
-    {
-      title: 'Login',
-      url: '/login',
-      icon: 'mail'
-    },
-    {
-      title: 'Registration',
-      url: '/registration',
-      icon: 'paper-plane'
-    },
-  ];
 
   public sessionUser: UserState;
   public isAuth: boolean;
@@ -43,6 +32,7 @@ export class AppComponent implements OnInit {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private sessionStore: Store<SessionState>,
+    private authService: AuthService
   ) {
     this.initializeApp();
     this.sessionStore.select(selectIsAuth).subscribe(data => {
@@ -61,9 +51,10 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    const path = window.location.pathname.split('folder/')[1];
-    if (path !== undefined) {
-      this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
-    }
+
+  }
+
+  logout(){
+    this.authService.logout();
   }
 }

@@ -1,16 +1,11 @@
-
 /* author Dmitry Zharikov zdimon77@gmail.com */
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
-import { ApiService } from './../../services/api.service';
-import { SnackbarService } from './../../services/snackbar.service';
-import { SessionService } from './../../services/session.service';
 
-import { Store } from '@ngrx/store';
-import * as sessionActions from '../../../store/actions/session.action';
-import { SessionState } from '../../../store/states/session.state';
-import { Router } from '@angular/router';
+
+// Services
+import { AuthService } from './../../services/auth.service';
 
 @Component({
   selector: 'core-login-form',
@@ -26,11 +21,7 @@ export class LoginFormComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private api: ApiService,
-    private sb: SnackbarService,
-    private sessionService: SessionService,
-    private sessionStore: Store<SessionState>,
-    private router: Router
+    private authService: AuthService
   ) {
 
   }
@@ -43,14 +34,7 @@ export class LoginFormComponent implements OnInit {
   }
 
   onSubmit() {
-    this.api.login(this.loginForm.value).subscribe((rez: any) => {
-      console.log(rez);
-      this.sessionService.setToken(rez.token);
-      this.sessionStore.dispatch(new sessionActions.LogIn(rez));
-      this.router.navigate(['index']);
-    }, (error) => {
-      this.sb.showMessage(error.error.detail);
-    })
+    this.authService.login(this.loginForm.value);
   }
 
 }

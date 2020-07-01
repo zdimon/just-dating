@@ -1,7 +1,4 @@
 
-
-
-
 /* author Dmitry Zharikov zdimon77@gmail.com */
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -34,6 +31,7 @@ import { RegistrationFormComponent } from './forms/registration-form/registratio
 import {ApiService} from './services/api.service';
 import { SnackbarService } from './services/snackbar.service';
 import { SessionService } from './services/session.service';
+import { AuthService } from './services/auth.service';
 
 // Interceptors
 import { HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
@@ -72,7 +70,8 @@ export const interceptorProviders = [
     ApiService,
     SnackbarService,
     SessionService,
-    interceptorProviders
+    interceptorProviders,
+    AuthService
   ]
 })
 export class CoreModule { }
