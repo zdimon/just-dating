@@ -7,6 +7,11 @@ import { ApiService } from './../../services/api.service';
 import { SnackbarService } from './../../services/snackbar.service';
 import { SessionService } from './../../services/session.service';
 
+import { Store } from '@ngrx/store';
+import * as sessionActions from '../../../store/actions/session.action';
+import { SessionState } from '../../../store/states/session.state';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'core-login-form',
   templateUrl: './login-form.component.html',
@@ -23,7 +28,9 @@ export class LoginFormComponent implements OnInit {
     private fb: FormBuilder,
     private api: ApiService,
     private sb: SnackbarService,
-    private sessionService: SessionService
+    private sessionService: SessionService,
+    private sessionStore: Store<SessionState>,
+    private router: Router
   ) {
 
   }
@@ -39,6 +46,8 @@ export class LoginFormComponent implements OnInit {
     this.api.login(this.loginForm.value).subscribe((rez: any) => {
       console.log(rez);
       this.sessionService.setToken(rez.token);
+      this.sessionStore.dispatch(new sessionActions.LogIn(rez));
+      this.router.navigate(['index']);
     }, (error) => {
       this.sb.showMessage(error.error.detail);
     })

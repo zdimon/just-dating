@@ -1,5 +1,7 @@
 
 
+
+
 /* author Dmitry Zharikov zdimon77@gmail.com */
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -39,6 +41,8 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 export const interceptorProviders = [
   { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
 ];
+
+
 
 @NgModule({
   declarations: [CoreComponent, RegistrationFormComponent, LoginFormComponent],

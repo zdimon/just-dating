@@ -12,6 +12,10 @@ import {CoreModule} from '../../../core/src/lib/core.module';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+// REDUX store
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreModule } from '@ngrx/store';
+import { reducers } from '../../../core/src/store/index';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,7 +25,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     IonicModule.forRoot(),
     AppRoutingModule,
     CoreModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    StoreModule.forRoot(reducers),
+    StoreDevtoolsModule.instrument()
   ],
   providers: [
     StatusBar,

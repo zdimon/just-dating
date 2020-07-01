@@ -117,3 +117,9 @@ ion-note {
 ion-item.selected {
   --color: var(--ion-color-primary);
 }
+
+.user-photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
