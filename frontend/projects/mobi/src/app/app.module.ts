@@ -26,6 +26,7 @@ export function init_app(initService: InitService) {
 }
 
 
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],

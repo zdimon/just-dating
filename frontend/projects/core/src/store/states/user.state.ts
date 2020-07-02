@@ -1,3 +1,5 @@
+import { EntityState } from '@ngrx/entity';
+
 export interface IUserState {
     id: number;
     username: string;
@@ -18,3 +20,10 @@ export class UserState implements IUserState {
 
     }
 }
+
+
+export interface UserListState extends EntityState<UserState> {
+}
+
+export const defaultState = {
+};

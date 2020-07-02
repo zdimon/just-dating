@@ -1,4 +1,3 @@
-
 /* author Dmitry Zharikov zdimon77@gmail.com */
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -32,6 +31,7 @@ import {ApiService} from './services/api.service';
 import { SnackbarService } from './services/snackbar.service';
 import { SessionService } from './services/session.service';
 import { AuthService } from './services/auth.service';
+import { WsOnlineService } from './services/ws-online.service';
 
 // Interceptors
 import { HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
@@ -71,7 +71,8 @@ export const interceptorProviders = [
     SnackbarService,
     SessionService,
     interceptorProviders,
-    AuthService
+    AuthService,
+    WsOnlineService
   ]
 })
 export class CoreModule { }
