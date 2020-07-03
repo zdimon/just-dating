@@ -5,6 +5,7 @@ from asgiref.sync import async_to_sync
 from channels.auth import login
 from online.models import SocketConnection
 import uuid 
+from asgiref.sync import async_to_sync
 
 class OnlineConsumer(WebsocketConsumer):
     
@@ -48,4 +49,19 @@ class OnlineConsumer(WebsocketConsumer):
                 'sid': self.sid, \
                 'agent': message['data']['userAgent'] \
                 })
+            async_to_sync(self.channel_layer.group_add)(self.token, self.channel_name)
             profile.update_online()
+
+    def user_online(self,event):
+        message = {  \
+            'type': 'user_online', \
+            'message': event["message"] \
+        }
+        self.send(text_data=json.dumps(message))
+
+    def user_offline(self,event):
+        message = {  \
+            'type': 'user_offline', \
+            'message': event["message"] \
+        }
+        self.send(text_data=json.dumps(message))

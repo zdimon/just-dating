@@ -152,3 +152,13 @@ STATICFILES_DIRS = [
 
 API_URL = 'http://localhost:7777/v1/'
 BACKEND_URL = 'http://localhost:7777'
+BROKER_URL = 'redis://localhost:6379'
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("127.0.0.1", 6379)],
+        },
+    },
+}
