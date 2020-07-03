@@ -1,0 +1,3 @@
+. ./venv/bin/activate
+cd backend
+celery -A backend worker -l info

@@ -4,6 +4,12 @@ import { webSocket } from "rxjs/webSocket";
 import { ReplaySubject, BehaviorSubject, Observable, Subscription, interval } from 'rxjs';
 import { SessionService } from './session.service';
 
+// Store
+import { Store } from '@ngrx/store';
+import * as userActions from './../../store/actions/user.action';
+import { UserListState } from './../../store/states/user.state';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -13,9 +19,12 @@ export class WsOnlineService {
   conn_timer$: Observable<any>;
   conn_subscription: Subscription;
   ping$ = new ReplaySubject();
+  update_user$ = new ReplaySubject();
+
 
   constructor(
-    private sessionService: SessionService
+    private sessionService: SessionService,
+    private userStore: Store<UserListState>
   ) {
       this.set_reconnector();
    }
@@ -30,8 +39,9 @@ export class WsOnlineService {
    dispacher(){
     this.connection.subscribe(
       msg => {
-        if ( msg.type === 'online:ping' ) {
-          this.ping$.next(msg);
+        console.log(msg);
+        if ( msg.type === 'user_online' ||  msg.type === 'user_offline' ) {
+          this.userStore.dispatch(new userActions.UpdateUser(msg.message));
         }
       },
       err => console.log(err),
