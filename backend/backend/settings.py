@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'account',
     'online',
     'usermedia',
-    'web'
+    'web',
+    'chat'
 ]
 
 MIDDLEWARE = [

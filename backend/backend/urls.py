@@ -35,7 +35,8 @@ urlpatterns = [
 
     path('v1/',include([
         path('account/',include('account.urls')),
-        path('usermedia/',include('usermedia.urls'))
+        path('usermedia/',include('usermedia.urls')),
+        path('chat/',include('chat.urls'))
     ])),
     path('swagger/<str:format>', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     path('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
