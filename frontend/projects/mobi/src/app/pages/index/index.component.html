@@ -12,6 +12,7 @@
               <p>Username: {{ user.username }}</p>
               <p>Online: {{ user.is_online }}</p>
             </ion-text>
+            <ion-button color="primary" (click)="doCallToChat(user.id)">Chat</ion-button>
   
           </ion-item>          
         </ion-card-content>

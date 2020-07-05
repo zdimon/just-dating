@@ -1,4 +1,3 @@
-
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 
@@ -10,7 +9,7 @@ import { selectUsersArray } from './../../../../../core/src/store/selectors/user
 
 // Service
 import { ApiService } from './../../../../../core/src/lib/services/api.service';
-
+import { ChatService } from './../../../../../core/src/lib/services/chat.service';
 
 
 @Component({
@@ -24,7 +23,9 @@ export class IndexComponent implements OnInit {
 
   constructor(
     private userStore: Store<UserListState>,
-    private api: ApiService
+    private api: ApiService,
+    private chatService: ChatService
+
   ) {
     this.api.getUserList().subscribe(data => {
         this.userStore.dispatch(new userActions.UpdateUsers(data));
@@ -35,4 +36,7 @@ export class IndexComponent implements OnInit {
   ngOnInit() {
   }
 
+  doCallToChat(userId: number) {
+    this.chatService.getChatRoom(userId);
+  }
 }

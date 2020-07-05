@@ -26,4 +26,5 @@ export interface UserListState extends EntityState<UserState> {
 }
 
 export const defaultState = {
+    
 };

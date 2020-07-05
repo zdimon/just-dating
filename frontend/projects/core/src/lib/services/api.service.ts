@@ -24,4 +24,8 @@ export class ApiService {
     return this.http.post(`${environment.backendUrl}v1/account/login`, data);
   }
 
+  getChatRoom(userId: number) {
+    return this.http.get(`${environment.backendUrl}v1/chat/get_room/${userId}`);
+  }
+
 }
