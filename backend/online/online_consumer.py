@@ -65,3 +65,10 @@ class OnlineConsumer(WebsocketConsumer):
             'message': event["message"] \
         }
         self.send(text_data=json.dumps(message))
+
+    def chat_message(self,event):
+        message = {  \
+            'type': 'chat_message', \
+            'message': event["message"] \
+        }
+        self.send(text_data=json.dumps(message))

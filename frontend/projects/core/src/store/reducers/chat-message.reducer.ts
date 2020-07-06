@@ -12,8 +12,10 @@ export function ChatMessageReducer(state = initialState, action: Actions.Actions
     switch (action.type) {
 
         case Actions.ChatMessageActionTypes.UpdateChatMessages:
-
           return adapter.upsertMany(action.payload, {...state });
+        
+        case Actions.ChatMessageActionTypes.UpdateChatMessage:
+          return adapter.upsertOne(action.payload, {...state });
 
         default:
         return state;

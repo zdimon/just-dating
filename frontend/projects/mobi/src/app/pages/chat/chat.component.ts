@@ -18,6 +18,7 @@ export class ChatComponent implements OnInit {
 
   token: string;
   messages: any;
+  message: string = '';
 
   constructor(
     private route:ActivatedRoute,
@@ -29,6 +30,15 @@ export class ChatComponent implements OnInit {
     this.token = this.route.snapshot.params['token'];
     this.chatService.getChatMessage(this.token);
     this.messages = this.chatMessageStore.select(selectChatMessageByTokenSelector(this.token));
+  }
+
+  doSubmit(){
+    const data = {
+      message: this.message,
+      token: this.token
+    }
+    this.chatService.sendChatMessage(data);
+    this.message = '';
   }
 
 }

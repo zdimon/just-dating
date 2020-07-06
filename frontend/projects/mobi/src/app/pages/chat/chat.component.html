@@ -32,6 +32,12 @@
           </ion-list>
         </ion-card-content>
       </ion-card>
+
+      <ion-item lines="none">
+        <ion-textarea [(ngModel)]="message" name="message" clearOnEdit="true" ></ion-textarea>
+        <ion-button (click)="doSubmit()" color="primary" expand="full" size="large">Send</ion-button>
+      </ion-item>
+
   
      
     </div>

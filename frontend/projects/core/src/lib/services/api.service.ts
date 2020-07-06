@@ -31,4 +31,9 @@ export class ApiService {
   getChatMessage(roomId: string) {
     return this.http.get(`${environment.backendUrl}v1/chat/get_room_messages?token=${roomId}`);
   }
+
+  sendMessage(data: any) {
+    return this.http.post(`${environment.backendUrl}v1/chat/create_message/`, data);
+  }
+
 }

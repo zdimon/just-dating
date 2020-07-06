@@ -18,7 +18,6 @@ class ChatRoomMessageSerializer(serializers.ModelSerializer):
         model = ChatMessage
         fields = [
             'id',
-            'room',
             'owner',
             'created_at',
             'message',

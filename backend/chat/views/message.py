@@ -34,4 +34,5 @@ class CreateRoomMessageView(generics.CreateAPIView):
     permission_classes = [IsAuthenticated]
 
     def perform_create(self, serializer):
-        serializer.save(user=self.request.user.userprofile)
+        room = ChatRoom.objects.get(token=serializer.validated_data['token'])
+        serializer.save(user=self.request.user.userprofile, room=room)

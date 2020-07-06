@@ -1,13 +1,25 @@
 from django.db import models
 from account.models import UserProfile
 import uuid 
+from backend.celery import app
+# channels
+from asgiref.sync import async_to_sync
+from channels.layers import get_channel_layer
+from rest_framework.authtoken.models import Token
 
 class ChatRoom(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     token = models.CharField(max_length=250,  default='', db_index=True)
     search_key = models.CharField(max_length=250, db_index=True)
-    
+
+    def get_participants(self):
+        out = []
+        c2us = ChatRoom2User.objects.filter(room=self) 
+        for c2u in c2us:
+            out.append(c2u.user)
+        return out
+
     @staticmethod
     def get_or_create(user_one, user_two):
         #search_key = '%s-%s|%s-%s' % (user_one.id, user_two.id, user_two.id, user_one.id)
@@ -47,3 +59,20 @@ class ChatMessage(models.Model):
         if not self.pk:
            self.token = self.room.token
         super(ChatMessage, self).save(*args, **kwargs)
+        self.send_chat_message(self.pk)
+
+    @app.task
+    def send_chat_message(id):
+        print('Sending message %s' % id)
+        from chat.serializers.message import ChatRoomMessageSerializer
+        channel_layer = get_channel_layer()
+        message  = ChatMessage.objects.get(pk=id)
+        room = message.room
+        for user in room.get_participants():
+            token, created = Token.objects.get_or_create(user=user)
+            async_to_sync(channel_layer.group_send)( \
+                token.key, \
+                { \
+                    'type': 'chat_message', \
+                    'message': ChatRoomMessageSerializer(message).data \
+                })        

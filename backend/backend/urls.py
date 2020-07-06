@@ -30,6 +30,7 @@ urlpatterns = [
     path('mobi/', index_mobi),
     path('mobi/folder/Inbox', index_mobi),
     path('mobi/<slug:slug>', index_mobi),
+    path('mobi/chat/<slug:slug>', index_mobi),
 
     
 

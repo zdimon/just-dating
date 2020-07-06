@@ -38,5 +38,10 @@ export class ChatService {
     })
   }
 
+  sendChatMessage(data: any) {
+    this.api.sendMessage(data).subscribe((rez: any) => {
+    })
+  }
+
 
 }

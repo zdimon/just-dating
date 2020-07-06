@@ -8,7 +8,8 @@ import { SessionService } from './session.service';
 import { Store } from '@ngrx/store';
 import * as userActions from './../../store/actions/user.action';
 import { UserListState } from './../../store/states/user.state';
-
+import * as chatMessageActions from './../../store/actions/chat-message.action';
+import { ChatMessageState } from './../../store/states/chat-message.state';
 
 
 @Injectable({
@@ -24,7 +25,8 @@ export class WsOnlineService {
 
   constructor(
     private sessionService: SessionService,
-    private userStore: Store<UserListState>
+    private userStore: Store<UserListState>,
+    private chatMessageStore: Store<ChatMessageState>,
   ) {
       this.set_reconnector();
    }
@@ -42,6 +44,9 @@ export class WsOnlineService {
         console.log(msg);
         if ( msg.type === 'user_online' ||  msg.type === 'user_offline' ) {
           this.userStore.dispatch(new userActions.UpdateUser(msg.message));
+        }
+        if ( msg.type === 'chat_message') {
+          this.chatMessageStore.dispatch(new chatMessageActions.UpdateChatMessage(msg.message));
         }
       },
       err => console.log(err),
