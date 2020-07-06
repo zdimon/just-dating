@@ -25,6 +25,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { LoginFormComponent } from './forms/login-form/login-form.component';
 import { RegistrationFormComponent } from './forms/registration-form/registration-form.component';
+import { AvatarComponent } from './widgets/avatar/avatar.component';
 
 // services
 import {ApiService} from './services/api.service';
@@ -37,6 +38,7 @@ import { ChatService } from './services/chat.service';
 // Interceptors
 import { HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+
 export const interceptorProviders = [
   { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
 ];
@@ -44,7 +46,7 @@ export const interceptorProviders = [
 
 
 @NgModule({
-  declarations: [CoreComponent, RegistrationFormComponent, LoginFormComponent],
+  declarations: [CoreComponent, RegistrationFormComponent, LoginFormComponent, AvatarComponent],
   imports: [
     HttpClientModule,
     CommonModule,
@@ -65,7 +67,8 @@ export const interceptorProviders = [
     RegistrationFormComponent,
     MatNativeDateModule,
     RegistrationFormComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    AvatarComponent
   ],
   providers: [
     ApiService,

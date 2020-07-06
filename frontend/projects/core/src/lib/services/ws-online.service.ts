@@ -19,6 +19,7 @@ export class WsOnlineService {
   connection: any;
   conn_timer$: Observable<any>;
   conn_subscription: Subscription;
+  desubscription: Subscription;
   ping$ = new ReplaySubject();
   update_user$ = new ReplaySubject();
 
@@ -39,7 +40,7 @@ export class WsOnlineService {
    }
 
    dispacher(){
-    this.connection.subscribe(
+    this.desubscription =this.connection.subscribe(
       msg => {
         console.log(msg);
         if ( msg.type === 'user_online' ||  msg.type === 'user_offline' ) {
@@ -83,6 +84,10 @@ export class WsOnlineService {
       }};
       this.connection.next(message);
       console.log(`WS login as ${token}`);
+  }
+
+  disconnect(){
+    this.desubscription.unsubscribe();
   }
 
 }

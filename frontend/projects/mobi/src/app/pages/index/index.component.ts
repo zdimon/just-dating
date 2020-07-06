@@ -1,6 +1,7 @@
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 
+
 // Store
 import { Store } from '@ngrx/store';
 import * as userActions from './../../../../../core/src/store/actions/user.action';
@@ -27,13 +28,15 @@ export class IndexComponent implements OnInit {
     private chatService: ChatService
 
   ) {
-    this.api.getUserList().subscribe(data => {
-        this.userStore.dispatch(new userActions.UpdateUsers(data));
-    });
+
+     this.api.getUserList().subscribe(data => {
+      this.userStore.dispatch(new userActions.UpdateUsers(data));
+      });
     this.users = this.userStore.select(selectUsersArray);
    }
 
   ngOnInit() {
+
   }
 
   doCallToChat(userId: number) {

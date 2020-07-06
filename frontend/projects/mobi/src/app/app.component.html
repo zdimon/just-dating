@@ -5,7 +5,7 @@
         <ion-list id="inbox-list">
           <ng-container *ngIf="isAuth && sessionUser">
             <ion-list-header>
-              <img class="user-photo" [src]="sessionUser.main_photo" />
+              <core-avatar [user]="sessionUser"></core-avatar>
               {{ sessionUser.username }}
             </ion-list-header>
             <ion-note></ion-note>

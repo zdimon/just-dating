@@ -7,12 +7,12 @@
       
         <ion-card-content>
           <ion-item  *ngFor="let user of (users | async)">
-            <ion-label><img [src]="user.main_photo" /></ion-label>
-            <ion-text>
-              <p>Username: {{ user.username }}</p>
-              <p>Online: {{ user.is_online }}</p>
+            <ion-label><core-avatar [user]="user"></core-avatar></ion-label>
+            <ion-label>{{ user.username }}</ion-label>
+            <ion-text slot="end">
+              <ion-button color="primary" (click)="doCallToChat(user.id)">Chat</ion-button>
             </ion-text>
-            <ion-button color="primary" (click)="doCallToChat(user.id)">Chat</ion-button>
+            
   
           </ion-item>          
         </ion-card-content>
