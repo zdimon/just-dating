@@ -5,7 +5,7 @@ import uuid
 class ChatRoom(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    token = models.CharField(max_length=250,  default='')
+    token = models.CharField(max_length=250,  default='', db_index=True)
     search_key = models.CharField(max_length=250, db_index=True)
     
     @staticmethod
@@ -33,3 +33,17 @@ class ChatRoom(models.Model):
 class ChatRoom2User(models.Model):
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     room = models.ForeignKey(ChatRoom, on_delete=models.CASCADE)
+
+class ChatMessage(models.Model):
+    token = models.CharField(max_length=250,  default='', db_index=True)
+    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    room = models.ForeignKey(ChatRoom, on_delete=models.CASCADE)
+    message =  models.TextField(default='')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    is_readed = models.BooleanField(default=False)
+
+    def save(self, *args, **kwargs):
+        if not self.pk:
+           self.token = self.room.token
+        super(ChatMessage, self).save(*args, **kwargs)

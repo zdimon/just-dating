@@ -135,6 +135,7 @@ FIXTURES_PATH = os.path.join(BASE_DIR, '../fixtures')
 REST_FRAMEWORK = {
     'EXCEPTION_HANDLER': 'backend.error_handler.custom_exception_handler',
     'DEFAULT_PAGINATION_CLASS': 'backend.paginator.CustomPagination',
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
     'PAGE_SIZE': 3,
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',

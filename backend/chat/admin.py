@@ -1,6 +1,9 @@
 from django.contrib import admin
 
-from chat.models import ChatRoom, ChatRoom2User
+from chat.models import ChatRoom, ChatRoom2User, ChatMessage
+
+class ChatMessageInlineAdmin(admin.TabularInline):
+    model = ChatMessage
 
 class ChatRoom2UserInlineAdmin(admin.TabularInline):
     model = ChatRoom2User
@@ -8,4 +11,4 @@ class ChatRoom2UserInlineAdmin(admin.TabularInline):
 @admin.register(ChatRoom)
 class ChatRoomAdmin(admin.ModelAdmin):
     list_display = ['created_at', 'token', 'search_key']
-    inlines = [ChatRoom2UserInlineAdmin,]
+    inlines = [ChatRoom2UserInlineAdmin, ChatMessageInlineAdmin]

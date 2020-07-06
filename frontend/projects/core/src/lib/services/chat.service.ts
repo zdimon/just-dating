@@ -8,7 +8,8 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import * as chatRoomActions from './../../store/actions/chat-room.action';
 import { ChatRoomState } from './../../store/states/chat-room.state';
-
+import * as chatMessageActions from './../../store/actions/chat-message.action';
+import { ChatMessageState } from './../../store/states/chat-message.state';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,7 @@ export class ChatService {
     private api: ApiService,
     private router: Router,
     private chatRoomStore: Store<ChatRoomState>,
+    private chatMessageStore: Store<ChatMessageState>,
     ) { }
 
   getChatRoom(userId: number){
@@ -28,4 +30,13 @@ export class ChatService {
       this.router.navigate(['chat/' + data.token]);
     })
   }
+
+  getChatMessage(roomId: string){
+    this.api.getChatMessage(roomId).subscribe((data: any) => {
+      console.log(data);
+      this.chatMessageStore.dispatch(new chatMessageActions.UpdateChatMessages(data.payload));
+    })
+  }
+
+
 }
