@@ -24,8 +24,10 @@ class InitView(APIView):
         responses={200: InitSerializer, 401: NoAuthSerializer} )
     def get(self, request, format=None):
         token, created = Token.objects.get_or_create(user=request.user)
+        user = request.user.userprofile
+        user.is_online = True
         data = {
             'token': token.key,
-            'user': request.user.userprofile
+            'user': user
         }
         return Response(InitSerializer(data).data)

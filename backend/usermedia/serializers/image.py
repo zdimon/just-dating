@@ -10,5 +10,6 @@ class UserImageSerializer(serializers.ModelSerializer):
             'id',
             'image',
             'title',
-            'is_main'
+            'is_main',
+            'get_small_image_url'
         ]

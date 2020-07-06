@@ -52,7 +52,7 @@ class UserProfile(User):
         payload_user = UserProfile.objects.get(pk=user_id)
         # print('User online task for %s token %s' % (user,token.key))
         channel_layer = get_channel_layer()
-        for user in UserProfile.objects.filter(is_online=True):
+        for user in UserProfile.objects.filter(is_online=True).exclude(pk=user_id):
             token = Token.objects.get(user=user)
             async_to_sync(channel_layer.group_send)( \
                 token.key, \
@@ -67,7 +67,7 @@ class UserProfile(User):
         payload_user = UserProfile.objects.get(pk=user_id)
         # print('User online task for %s token %s' % (user,token.key))
         channel_layer = get_channel_layer()
-        for user in UserProfile.objects.filter(is_online=True):
+        for user in UserProfile.objects.filter(is_online=True).exclude(pk=user_id):
             token = Token.objects.get(user=user)
             async_to_sync(channel_layer.group_send)( \
                 token.key, \

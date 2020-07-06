@@ -20,6 +20,6 @@ class UserProfileSerializer(serializers.ModelSerializer):
     def get_main_photo(self, obj):
         try:
             media = UserMedia.objects.get(user=obj, is_main=True, type_media='photo')
-            return BACKEND_URL+media.image.url
+            return media.get_small_image_url
         except:
-            return 'no image'
+            return 'noimage.png'

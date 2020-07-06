@@ -4,6 +4,10 @@ from account.models import UserProfile
 
 from django.utils.safestring import mark_safe
 
+from backend.settings import BACKEND_URL
+from image_cropping.fields import ImageRatioField, ImageCropField
+from easy_thumbnails.files import get_thumbnailer
+
 class UserMedia(models.Model):
     TYPE_MEDIA = (
         ('photo', _('Photo')),
@@ -45,8 +49,24 @@ class UserMedia(models.Model):
     is_published = models.BooleanField(default=False)
     title = models.CharField(max_length=250)
     video = models.FileField(blank=True, upload_to='user_video')
-    image = models.ImageField(blank=True, upload_to='user_photo')
+    image = ImageCropField(blank=True, upload_to='user_photo')
+    cropping = ImageRatioField('image', '80x80')
 
     @property
     def image_tag(self):
         return mark_safe('<img width="150" src="%s" />' % self.image.url)
+
+    @property
+    def get_small_image_tag(self):
+        return mark_safe('<img src="%s" />' % self.get_small_image_url) 
+
+    @property
+    def get_small_image_url(self):
+        try:
+            return BACKEND_URL+get_thumbnailer(self.image).get_thumbnail({
+                'size': (80, 80),
+                'box': self.cropping,
+                'crop': 'smart',
+            }).url 
+        except:
+            return BACKEND_URL+'noimage.png' 

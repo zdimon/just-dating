@@ -7,7 +7,7 @@ from drf_yasg.utils import swagger_auto_schema
 from account.serializers.login import LoginRequestSerializer, LoginResponseSerializer
 from account.serializers.profile import UserProfileSerializer
 from rest_framework.exceptions import AuthenticationFailed 
-
+from rest_framework.views import APIView
 
 class LoginView(ObtainAuthToken):
     '''
@@ -40,3 +40,20 @@ class LoginView(ObtainAuthToken):
             return Response(LoginResponseSerializer(out_data).data)
         else:
             raise AuthenticationFailed('Wrong username or password!')
+
+class LogoutView(APIView):
+    '''
+
+    User logout.
+
+    __________________
+
+    '''
+
+    permission_classes = (IsAuthenticated,)
+    @swagger_auto_schema( 
+        )
+    def get(self, request, format=None):
+        user = request.user.userprofile
+        user.update_online()
+        return Response({'message': 'ok'})

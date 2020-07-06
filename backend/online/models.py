@@ -10,7 +10,7 @@ class SocketConnection(models.Model):
     @staticmethod
     def create_if_not_exist(data):
         try:
-            SocketConnection.objects.get(sid=data['sid'])
+            SocketConnection.objects.get(agent=data['agent'])
         except:
             SocketConnection.objects.create( \
                 user = data['user'], \

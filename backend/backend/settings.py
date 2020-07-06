@@ -45,7 +45,9 @@ INSTALLED_APPS = [
     'online',
     'usermedia',
     'web',
-    'chat'
+    'chat',
+    'easy_thumbnails',
+    'image_cropping' ,
 ]
 
 MIDDLEWARE = [
