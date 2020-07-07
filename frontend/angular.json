@@ -199,8 +199,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "projects/mobi/src/environments/environment.ts",
-                  "with": "projects/mobi/src/environments/environment.prod.ts"
+                  "replace": "projects/core/src/environments/environment.ts",
+                  "with": "projects/core/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,

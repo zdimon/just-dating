@@ -1,4 +1,5 @@
 . ./venv/bin/activate
 cd backend
+./manage.py migrate
 ./manage.py load_users
 ./manage.py load_media
