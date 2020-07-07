@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  backendUrl: 'http://localhost:7778/'
+  backendUrl: 'https://chat.webmonstr.com/'
 };
