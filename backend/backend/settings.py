@@ -154,8 +154,7 @@ STATICFILES_DIRS = [
 ]
 
 
-API_URL = 'http://localhost:7777/v1/'
-BACKEND_URL = 'http://localhost:7777'
+
 BROKER_URL = 'redis://localhost:6379'
 
 CHANNEL_LAYERS = {
@@ -166,3 +165,5 @@ CHANNEL_LAYERS = {
         },
     },
 }
+
+from .local import *

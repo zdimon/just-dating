@@ -11,7 +11,9 @@ class ChatRoomMessageSerializer(serializers.ModelSerializer):
     is_readed = serializers.BooleanField(read_only=True)
 
     def get_owner(self, obj):
-        return UserProfileSerializer(obj.user).data
+        print(obj)
+        return 222
+        #return UserProfileSerializer(obj.user).data
        
 
     class Meta:

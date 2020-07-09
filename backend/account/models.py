@@ -31,7 +31,10 @@ class UserProfile(User):
     account = models.DecimalField(max_digits=20, decimal_places=2, default=Decimal(0.00))
     birthday = models.DateField(null=True, blank=True)
 
-
+    def get_opposite_gender(self):
+        if self.gender == 'male':
+            return 'female'
+        return 'male'
 
     def update_online(self):
         from online.models import SocketConnection
@@ -52,7 +55,7 @@ class UserProfile(User):
         payload_user = UserProfile.objects.get(pk=user_id)
         # print('User online task for %s token %s' % (user,token.key))
         channel_layer = get_channel_layer()
-        for user in UserProfile.objects.filter(is_online=True).exclude(pk=user_id):
+        for user in UserProfile.objects.filter(is_online=True, gender=payload_user.get_opposite_gender()):
             token = Token.objects.get(user=user)
             async_to_sync(channel_layer.group_send)( \
                 token.key, \
@@ -67,7 +70,7 @@ class UserProfile(User):
         payload_user = UserProfile.objects.get(pk=user_id)
         # print('User online task for %s token %s' % (user,token.key))
         channel_layer = get_channel_layer()
-        for user in UserProfile.objects.filter(is_online=True).exclude(pk=user_id):
+        for user in UserProfile.objects.filter(is_online=True, gender=payload_user.get_opposite_gender()):
             token = Token.objects.get(user=user)
             async_to_sync(channel_layer.group_send)( \
                 token.key, \

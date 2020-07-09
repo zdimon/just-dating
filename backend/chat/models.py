@@ -6,6 +6,7 @@ from backend.celery import app
 from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
 from rest_framework.authtoken.models import Token
+from backend.cent_client import CentClient
 
 class ChatRoom(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
@@ -64,15 +65,16 @@ class ChatMessage(models.Model):
     @app.task
     def send_chat_message(id):
         print('Sending message %s' % id)
+        cent_client = CentClient()
         from chat.serializers.message import ChatRoomMessageSerializer
         channel_layer = get_channel_layer()
         message  = ChatMessage.objects.get(pk=id)
         room = message.room
         for user in room.get_participants():
             token, created = Token.objects.get_or_create(user=user)
-            async_to_sync(channel_layer.group_send)( \
-                token.key, \
-                { \
-                    'type': 'chat_message', \
-                    'message': ChatRoomMessageSerializer(message).data \
-                })        
+            payload =  { \
+                        'type': 'chat_message', \
+                        'message': ChatRoomMessageSerializer(message).data \
+                       } 
+            # async_to_sync(channel_layer.group_send)(token.key, payload)        
+            cent_client.send(token.key, payload)
