@@ -16,6 +16,7 @@ import { UserState } from './../../../core/src/store/states/user.state';
 // Services
 import { AuthService } from './../../../core/src/lib/services/auth.service';
 import { WsOnlineService } from './../../../core/src/lib/services/ws-online.service';
+import { CentService } from './../../../core/src/lib/services/cent.service';
 
 @Component({
   selector: 'app-root',
@@ -34,7 +35,8 @@ export class AppComponent implements OnInit {
     private statusBar: StatusBar,
     private sessionStore: Store<SessionState>,
     private authService: AuthService,
-    private wsOnlineService: WsOnlineService
+    private wsOnlineService: WsOnlineService,
+    private cent: CentService,
   ) {
     this.initializeApp();
     this.sessionStore.select(selectIsAuth).subscribe(data => {
@@ -43,9 +45,7 @@ export class AppComponent implements OnInit {
     this.sessionStore.select(selectSessionUser).subscribe(data => {
       this.sessionUser = data;
     });
-    this.wsOnlineService.ping$.subscribe(data => {
-      console.log(data);
-    });
+
   }
 
   initializeApp() {

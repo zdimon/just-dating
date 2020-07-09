@@ -1,0 +1,8 @@
+{
+  "v3_use_offset": true,
+  "token_hmac_secret_key": "41355f96-1c88-468e-862f-db1e7546281e",
+  "admin_password": "123",
+  "admin_secret": "d21253eb-53ca-429f-8e87-83d1d3d384c7",
+  "api_key": "e904b803-f695-4286-8af1-063b346a3955",
+  "join_leave": true
+}
