@@ -6,7 +6,9 @@
         </ion-card-header>
       
         <ion-card-content>
-          
+          <ion-item  *ngFor="let user of (users | async)">
+            <ion-label><img [src]="user.main_photo" /></ion-label>
+          </ion-item> 
         </ion-card-content>
       </ion-card>
       </div>
