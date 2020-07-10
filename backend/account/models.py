@@ -25,4 +25,11 @@ class UserProfile(User):
     birthday = models.DateField(null=True, blank=True)
 
 
-    
+    def update_online(self):
+        from online.models import SocketConnection
+        cnt = SocketConnection.objects.filter(user = self).count()
+        if cnt == 0:
+            self.is_online = False
+        else:
+            self.is_online = True
+        self.save()    

@@ -14,7 +14,8 @@ class UserProfileSerializer(serializers.ModelSerializer):
             'username',
             'gender',
             'birthday',
-            'main_photo'
+            'main_photo',
+            'is_online'
         ]
     def get_main_photo(self, obj):
         try:
