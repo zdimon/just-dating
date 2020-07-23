@@ -78,6 +78,14 @@ Run server
 
     ./bin/build_mobi
 
+## Links
+
+swagger - http://localhost:7777
+
+admin - http://localhost:7777/admin
+
+mobile app - http://localhost:7777/mobi
+
 
 
 
