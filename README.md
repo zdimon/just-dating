@@ -50,7 +50,33 @@ Django channels - for the web-sockets
 WebRTC - for the broadcasting
 
 
+# Deploy backend
 
+Cloning.
+
+    git clone git@github.com:zdimon/just-dating.git
+    cd just-dating
+
+Create virtual environment.
+
+    python3 -m venv venv
+    . ./venv/bin/activate
+
+Install requirements.
+
+    pip3 install -r requirements.txt
+
+Load data
+
+    ./bin/seeddb
+
+Run server 
+
+    ./bin/run
+
+## Frontend builder
+
+    ./bin/build_mobi
 
 
 
