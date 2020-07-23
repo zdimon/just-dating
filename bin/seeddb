@@ -3,3 +3,4 @@ cd backend
 ./manage.py migrate
 ./manage.py load_users
 ./manage.py load_media
+./manage.py load_chat

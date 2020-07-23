@@ -25,3 +25,32 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+
+# Deploy backend
+
+Cloning.
+
+    git clone git@github.com:zdimon/just-dating.git
+    cd just-dating
+
+Create virtual environment.
+
+    python3 -m venv venv
+    . ./venv/bin/activate
+
+Install requirements.
+
+    pip3 install -r requirements.txt
+
+Load data
+
+    ./bin/seeddb
+
+Run server 
+
+    ./bin/run
+
+## Frontend builder
+
+    ./bin/build_mobi
