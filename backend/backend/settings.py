@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'chat',
     'easy_thumbnails',
     'image_cropping' ,
+    'quiz',
 ]
 
 MIDDLEWARE = [
