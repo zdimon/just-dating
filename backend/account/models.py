@@ -77,4 +77,4 @@ class UserProfile(User):
                 { \
                     'type': 'user_offline', \
                     'message': UserProfileSerializer(payload_user).data \
-                }) \
+                })
