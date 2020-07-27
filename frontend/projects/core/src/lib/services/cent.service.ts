@@ -1,4 +1,4 @@
-
+import { Subscription } from 'rxjs';
 import { Injectable } from '@angular/core';
 
 
@@ -19,7 +19,7 @@ export class CentService {
 
   centrifuge: any;
   token: string;
-
+  cent_subscription: Subscription;
 
   constructor(
     private sessionService: SessionService,
@@ -34,7 +34,7 @@ export class CentService {
   connect() {
     this.token = this.sessionService.getToken();
     if (this.token) {
-
+      console.log('Centrifugo connection');
       this.centrifuge = new Centrifuge(environment.centUrl);
       this.centrifuge.setToken(environment.centToken);
       this.centrifuge.connect();
@@ -50,14 +50,16 @@ export class CentService {
   }
 
   dispatcher(){
-    this.centrifuge.subscribe(this.token, (message) => {
+    this.cent_subscription = this.centrifuge.subscribe(this.token, (message) => {
       console.log(message);
       if ( message.data.type === 'chat_message') {
         this.chatMessageStore.dispatch(new chatMessageActions.UpdateChatMessage(message.data.message));
       }
     });
-    this.centrifuge.subscribe('news', (message) => {
-      console.log(message);
-    });
+  }
+
+  disconnect(){
+    console.log('Centrifugo disconnection');
+    this.centrifuge.disconnect();
   }
 }
