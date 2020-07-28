@@ -14,3 +14,4 @@ django-image-cropping==1.4.0
 pyjwt
 cent
 wheel
+pytils
