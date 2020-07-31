@@ -36,6 +36,10 @@ class UserProfile(User):
             return 'female'
         return 'male'
 
+    def get_contacts(self):
+        from contact.models import Contact
+        return Contact.objects.filter(owner=self)
+
     def update_online(self):
         from online.models import SocketConnection
         cnt = SocketConnection.objects.filter(user = self).count()

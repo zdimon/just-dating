@@ -27,7 +27,23 @@ class Command(BaseCommand):
                     rez = requests.get(API_URL+'chat/get_room/%s' % male_user.id, headers=headers)
                     room_out = json.loads(rez.text)
                     print('chat room %s was created' % room_out['id'])
-                    data = {"room": room_out['id'], "message": "Hello from %s" % female_user.username}
+                    data = {"room": room_out['id'], "token": room_out['token'], "message": "Hello from %s" % female_user.username}
+                    rez = requests.post(API_URL+'chat/create_message/', json=data, headers=headers)
+                    message_out = json.loads(rez.text)
+                    print('Message: %s' % message_out['message'])
+
+
+            for female_user in jdata['male']:
+                female_user = UserProfile.objects.get(username=female_user['username'])
+                token, created = Token.objects.get_or_create(user=female_user)
+                headers = {'Authorization': 'Token %s' % token.key}
+                
+                for male_user in jdata['female']:
+                    male_user = UserProfile.objects.get(username=male_user['username'])
+                    rez = requests.get(API_URL+'chat/get_room/%s' % male_user.id, headers=headers)
+                    room_out = json.loads(rez.text)
+                    print('chat room %s was created' % room_out['id'])
+                    data = {"room": room_out['id'], "token": room_out['token'], "message": "Hello from %s" % female_user.username}
                     rez = requests.post(API_URL+'chat/create_message/', json=data, headers=headers)
                     message_out = json.loads(rez.text)
                     print('Message: %s' % message_out['message'])
