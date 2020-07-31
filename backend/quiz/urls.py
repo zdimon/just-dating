@@ -5,6 +5,6 @@ from quiz.views.message import GetRoomMessageView
 urlpatterns = [ 
     path('theme/list',ThemeListView.as_view()),
     path('theme',ThemeListViewSet),
-    path('get_room/<str:token>',GetRoomView.as_view()),
+    path('get_room/<str:token>/<str:lang>/<str:type>/<str:lvl>/<str:tp>/<str:mode>/<str:theme>',GetRoomView.as_view()),
     path('get_room_messages/<str:token>', GetRoomMessageView.as_view()),
 ]

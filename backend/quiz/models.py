@@ -3,6 +3,8 @@ from django.utils.translation import ugettext_lazy as _
 import pytils
 from account.models import UserProfile
 from django.contrib.postgres.fields import JSONField
+import random 
+import uuid 
 
 class Theme(models.Model):
     """
@@ -145,77 +147,112 @@ class Room(models.Model):
     def get_absolute_url(self):
        return reverse("quiz:room_detail", kwargs={"token": self.token})
 
-    def get_users(self):
-        out = ''
-        for u in RoomUsers.objects.filter(room=self):
-            out = out + u.user.username
-        return out
+    # def get_users(self):
+    #     out = ''
+    #     for u in RoomUsers.objects.filter(room=self):
+    #         out = out + u.user.username
+    #     return out
 
-    def get_cnt_questions(self):
-        return self.roomquestion_set.count()
+    # def get_cnt_questions(self):
+    #     return self.roomquestion_set.count()
 
-    def get_cnt_users(self):
-        return RoomUsers.objects.filter(room=self).count()
+    # def get_cnt_users(self):
+    #     return RoomUsers.objects.filter(room=self).count()
 
-    def get_current_question_number(self):
-        return self.current_question+1
+    # def get_current_question_number(self):
+    #     return self.current_question+1
 
     
-    def get_current_question_obj(self):
-        return Question.objects.get(pk=self.questions_json[self.current_question])    
+    # def get_current_question_obj(self):
+    #     return Question.objects.get(pk=self.questions_json[self.current_question])    
 
-    def save(self, **kwargs):
-        if not self.id:
-            self.token = hashlib.md5("%s" % int(time.time())).hexdigest()
-        return super(Room, self).save(**kwargs)
+    # def save(self, **kwargs):
+    #     if not self.id:
+    #         self.token = hashlib.md5("%s" % int(time.time())).hexdigest()
+    #     return super(Room, self).save(**kwargs)
 
-    def mix_question(self):
-        '''
-           Reranges randomly the questions in the questions_json
-        '''    
-        lst = []
-        for q in self.roomquestion_set.all().order_by('?'):
-            lst.append(q.question.id)
-        self.questions_json = lst
-        first = Question.objects.get(pk=lst[0])
-        self.answers = first.answers
-        self.current_question_text = first.question
-        self.save()
+    # def mix_question(self):
+    #     '''
+    #        Reranges randomly the questions in the questions_json
+    #     '''    
+    #     lst = []
+    #     for q in self.roomquestion_set.all().order_by('?'):
+    #         lst.append(q.question.id)
+    #     self.questions_json = lst
+    #     first = Question.objects.get(pk=lst[0])
+    #     self.answers = first.answers
+    #     self.current_question_text = first.question
+    #     self.save()
 
 
-    def next_question(self):
-        '''
-            Changing the current question.
-        '''
-        from quiz.utils import finish_quiz
-        indx = self.current_question+1
-        #import pdb; pdb.set_trace()
-        if indx == self.get_cnt_questions():
-            finish_quiz(self)
-        else:
-            newq = Question.objects.get(pk=self.questions_json[indx])
-            self.current_question_text = newq.question
-            self.current_question = indx
-            self.answers = newq.answers
-            self.save()
+    def set_question(self, lang, level, tp, mode, theme):
+        self.current_question = random.choice(Question.objects.filter(lang=lang, level=level, tp=tp, mode=mode, theme=theme), 1)
 
-    def add_user(self, user):
-        '''
-            Добавление пользователя
-        '''
-        return self.user_set
 
-    def del_user(self, user):
-        '''
-            Удаление пользователя
-        '''
-        return self.user_set
+    @staticmethod
+    def get_or_create(self, type, question_time, lang, level, tp, mode, theme):
+        try:
+            room = Room.objects.get(token = token)
+        except:
+            quiz = Quiz()
+            quiz.questions = Question.objects.filter(lang=lang, level=level, tp=tp, mode=mode, theme=theme)
+            quiz.name='First Quiz'
+            quiz.slug=None
+            quiz.save()
 
-    def close_quiz(self):
-        '''
-            Закрытие викторины
-        '''
-        return {}
+            room = Room()
+            room.type = type
+            room.question_time = question_time
+            room.token = uuid.uuid1()
+            room.current_question = random.choice(quiz.questions, 1)
+            room.current_question_text = current_question.question
+            room.winner = None
+            room.is_done = False
+            #room.questions_json = {}
+            room.save()
+
+            r2q = RoomQuestion()
+            r2q.room = room
+            r2q.question = room.current_question.question
+            r2q.is_done = False
+        
+        return room
+    
+    
+    # def next_question(self):
+    #     '''
+    #         Changing the current question.
+    #     '''
+    #     from quiz.utils import finish_quiz
+    #     indx = self.current_question+1
+    #     #import pdb; pdb.eset_trace()
+    #     if indx == self.get_cnt_questions():
+    #         finish_quiz(self)
+    #     else:
+    #         newq = Question.objects.get(pk=self.questions_json[indx])
+    #         self.current_question_text = newq.question
+    #         self.current_question = indx
+    #         self.answers = newq.answers
+    #         self.save()
+
+    # def add_user(self, user):
+    #     '''
+    #         Добавление пользователя
+    #     '''
+    #     return self.user_set
+
+    # def del_user(self, user):
+    #     '''
+    #         Удаление пользователя
+    #     '''
+    #     return self.user_set
+
+    # def close_quiz(self):
+    #     '''
+    #         Закрытие викторины
+    #     '''
+    #     return {}
+
 
 class RoomQuestion(models.Model):
     '''
