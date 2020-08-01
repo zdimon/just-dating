@@ -131,7 +131,7 @@ class RoomMessage(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
 
-    def check_answer(self)
+    def check_answer(self):
         pass
 
     def save(self, *args, **kwargs):
