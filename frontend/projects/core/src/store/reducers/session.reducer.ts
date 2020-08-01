@@ -1,4 +1,3 @@
-import { LogOut } from './../actions/session.action';
 import * as Actions from '../actions/session.action';
 import {SessionState, defaultState} from '../states/session.state';
 
