@@ -1,5 +1,5 @@
 from django.contrib import admin
-from quiz.models import Theme, Question, Room, RoomMessage
+from quiz.models import Theme, Question, Room, RoomMessage, RoomQuestion
 
 class ThemeAdmin(admin.ModelAdmin):
     list_display = ('name', 'slug')
@@ -15,23 +15,16 @@ admin.site.register(Question, QuestionAdmin)
 class RoomAdmin(admin.ModelAdmin):
     list_display = (
         'type',
-        'quiz',
         'created_at',
-        'question_time',
-        'current_question',
-        'current_question_text',
-        'answers',
-        'questions_json',
-        'winner',
         'is_done',
         'token',
+        'current_question'
     )
 
 admin.site.register(Room, RoomAdmin)
 
 class RoomMessageAdmin(admin.ModelAdmin):
     list_display = (
-        'question',
         'is_right',
         'is_service',
         'room',
@@ -41,3 +34,14 @@ class RoomMessageAdmin(admin.ModelAdmin):
     )
 
 admin.site.register(RoomMessage, RoomMessageAdmin)
+
+
+class RoomQuestionAdmin(admin.ModelAdmin):
+    list_display = (
+        'question',
+        'room',
+        'is_done'
+    )
+
+admin.site.register(RoomQuestion, RoomQuestionAdmin)
+
