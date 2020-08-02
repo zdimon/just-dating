@@ -43,8 +43,7 @@ urlpatterns = [
         path('account/',include('account.urls')),
         path('usermedia/',include('usermedia.urls')),
         path('chat/',include('chat.urls')),
-        path('quiz/',include('quiz.urls')),
-        path('themeset', include(router.urls)),
+        path('quiz/',include('quiz.urls'))
     ])),
     path('swagger/<str:format>', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     path('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),

@@ -20,3 +20,30 @@ class GetRoomMessageView(APIView):
         room = Room.objects.filter(token=token)
         messages = RoomMessage.objects.filter(room=room)
         return Response(QuizRoomMessageSerializer(messages).data)
+
+from quiz.serializers.message import MessageRequestSerializer, QuizRoomMessageSerializer
+from rest_framework.views import APIView
+from quiz.models import RoomMessage, Room
+
+class CreateQuizMessageView(APIView):
+    '''
+    
+    Create a new message in the quiz room.
+
+
+    '''
+
+    permission_classes = [IsAuthenticated]
+
+    @swagger_auto_schema( 
+        request_body=MessageRequestSerializer,
+        responses={200: QuizRoomMessageSerializer, 401: NoAuthSerializer} )
+    def post(self, request): 
+        room = Room.objects.get(token=request.data['room_token'])
+        obj = RoomMessage()
+        obj.room = room
+        obj.user = request.user.userprofile
+        obj.text = request.data['message']
+        obj.save()
+        obj.check_answer()
+        return Response(QuizRoomMessageSerializer(obj).data)
