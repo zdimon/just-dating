@@ -54,7 +54,7 @@ WebRTC - for the broadcasting
 
 ## System requirements
 
-    sudo apt-get install libpq-dev
+    sudo apt-get install libpq-dev redis-server
 
 Cloning.
 
