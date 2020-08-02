@@ -52,6 +52,10 @@ WebRTC - for the broadcasting
 
 # Deploy backend
 
+## System requirements
+
+    sudo apt-get install libpq-dev
+
 Cloning.
 
     git clone git@github.com:zdimon/just-dating.git
