@@ -17,6 +17,9 @@ import { ChatMessageReducer } from './reducers/chat-message.reducer';
 import { QuizRoomListState } from './states/quiz-room.state';
 import { QuizRoomReducer } from './reducers/quiz-room.reducer';
 
+import { QuizMessageListState } from './states/quiz-message.state';
+import { QuizMessageReducer } from './reducers/quiz-message.reducer';
+
 
 export interface State {
     session: SessionState;
@@ -24,6 +27,7 @@ export interface State {
     chatRoom: ChatRoomListState;
     chatMessage: ChatMessageListState;
     quizRoom: QuizRoomListState;
+    quizMessage: QuizMessageListState;
 }
 
 export const reducers: ActionReducerMap<State> = {
@@ -31,5 +35,6 @@ export const reducers: ActionReducerMap<State> = {
     users: UserReducer,
     chatRoom: ChatRoomReducer,
     chatMessage: ChatMessageReducer,
-    quizRoom: QuizRoomReducer
+    quizRoom: QuizRoomReducer,
+    quizMessage: QuizMessageReducer
   };

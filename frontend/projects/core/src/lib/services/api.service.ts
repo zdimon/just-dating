@@ -41,4 +41,13 @@ export class ApiService {
     return this.http.post(`${environment.backendUrl}v1/chat/create_message/`, data);
   }
 
+  sendQuizMessage(data: any) {
+    return this.http.post(`${environment.backendUrl}v1/quiz/save_message/`, data);
+  }
+
+  getQuizMessage(roomId: string) {
+    return this.http.get(`${environment.backendUrl}v1/quiz/get_room_messages/${roomId}`);
+  }
+
+
 }
