@@ -1,5 +1,5 @@
 export const environment = {
-  production: false,
+  production: true,
   backendUrl: 'https://chat.webmonstr.com/',
   centUrl: 'wss://chat.webmonstr.com/connection/websocket',
   onlineUrl: 'wss://chat.webmonstr.com/online/',
