@@ -9,7 +9,6 @@ from rest_framework.mixins import ListModelMixin
 from quiz.serializers.message import QuizRoomMessageSerializer
 from backend.serializers.noauth import NoAuthSerializer
 from quiz.models import Room, RoomMessage
-#from chat.filters.message import MessageFilter
 
 class GetRoomMessageView(APIView):
     permission_classes = (IsAuthenticated,)
