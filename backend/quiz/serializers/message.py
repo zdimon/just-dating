@@ -3,7 +3,7 @@ from quiz.models import RoomMessage
 from account.serializers.profile import UserProfileSerializer
 
 class MessageRequestSerializer(serializers.Serializer):
-    message = serializers.CharField()
+    messages = serializers.CharField()
     room_token = serializers.CharField()
 
 
