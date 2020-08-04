@@ -3,7 +3,7 @@ from quiz.models import RoomMessage
 from account.serializers.profile import UserProfileSerializer
 
 class MessageRequestSerializer(serializers.Serializer):
-    messages = serializers.CharField()
+    message = serializers.CharField()
     room_token = serializers.CharField()
 
 
@@ -18,4 +18,4 @@ class QuizRoomMessageSerializer(serializers.ModelSerializer):
             'room',
             'text',
             'user',
-            'created_at',]
+            'created_at']

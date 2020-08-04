@@ -24,12 +24,16 @@ class GetRoomView(APIView):
         return Response(QuizRoomSerializer(room).data)
 
 
-class GetRoomsView(generics.ListAPIView):
+class GetRoomsView(APIView):
     '''
     
-    Get room messages.
+    Get all rooms
 
 
     '''
-    serializer_class = QuizRoomSerializer
-    queryset = Room.objects.all().order_by('-id')
+    @swagger_auto_schema( 
+        responses={200: QuizRoomSerializer, 401: NoAuthSerializer} )
+
+    def get(self, request):
+        rooms = Room.objects.all()
+        return Response(QuizRoomSerializer(rooms, many=True).data)

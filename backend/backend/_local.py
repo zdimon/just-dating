@@ -1,3 +1,4 @@
+import os
 API_URL = 'http://localhost:7777/v1/'
 BACKEND_URL = 'http://localhost:7777'
 CENT_URL='http://localhost:9999'
