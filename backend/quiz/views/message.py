@@ -6,30 +6,24 @@ from rest_framework import generics
 from rest_framework.generics import GenericAPIView
 from rest_framework.mixins import ListModelMixin
 
-from quiz.serializers.message import QuizRoomMessageSerializer
+from quiz.serializers.message import QuizRoomMessageSerializer, MessageRequestSerializer
 from backend.serializers.noauth import NoAuthSerializer
 from quiz.models import Room, RoomMessage
 
 class GetRoomMessageView(APIView):
-    permission_classes = (IsAuthenticated,)
+    permission_classes = [IsAuthenticated]
     @swagger_auto_schema( 
         responses={200: QuizRoomMessageSerializer, 401: NoAuthSerializer} )
 
     def get(self, request, token):
-        room = Room.objects.filter(token=token)
+        room = Room.objects.get(token=token)
         messages = RoomMessage.objects.filter(room=room)
-        return Response(QuizRoomMessageSerializer(messages).data)
-
-from quiz.serializers.message import MessageRequestSerializer, QuizRoomMessageSerializer
-from rest_framework.views import APIView
-from quiz.models import RoomMessage, Room
+        return Response(QuizRoomMessageSerializer(messages, many=True).data)
 
 class CreateQuizMessageView(APIView):
     '''
     
     Create a new message in the quiz room.
-
-
     '''
 
     permission_classes = [IsAuthenticated]
@@ -43,6 +37,6 @@ class CreateQuizMessageView(APIView):
         obj.room = room
         obj.user = request.user.userprofile
         obj.text = request.data['message']
-        obj.save()
         obj.check_answer()
+        obj.save()
         return Response(QuizRoomMessageSerializer(obj).data)

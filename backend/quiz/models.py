@@ -63,15 +63,15 @@ class Question(models.Model):
     def get_answers(self):
         return self.answers
         
-    def check_answer(self,ans):
-        ans = ans.upper()
-        for a in self.answers_ru.split(','):
-            if ans == a.upper():
-                return True
-        for a in self.answers_en.split(','):
-            if ans == a.upper():
-                return True
-        return False        
+    # def check_answer(self,ans):
+    #     ans = ans.upper()
+    #     for a in self.answers_ru.split(','):
+    #         if ans == a.upper():
+    #             return True
+    #     for a in self.answers_en.split(','):
+    #         if ans == a.upper():
+    #             return True
+    #     return False        
 
     def __str__(self):
         return self.question
@@ -132,7 +132,9 @@ class RoomMessage(models.Model):
 
 
     def check_answer(self):
-        pass
+        answer = self.room.current_question.answers
+        if self.text.upper() == answer:
+            self.is_right = True
 
     def save(self, *args, **kwargs):
         if not self.pk:
@@ -155,3 +157,4 @@ class RoomMessage(models.Model):
                         'message': QuizRoomMessageSerializer(obj).data \
                        }        
             cent_client.send(token.key, payload)
+    

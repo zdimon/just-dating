@@ -18,4 +18,4 @@ class QuizRoomMessageSerializer(serializers.ModelSerializer):
             'room',
             'text',
             'user',
-            'created_at',]
+            'created_at']
