@@ -1,5 +1,5 @@
 from django.contrib import admin
-from quiz.models import Theme, Question, Room, RoomMessage, RoomQuestion
+from quiz.models import Theme, Question, Room, RoomMessage, RoomQuestion, Smile, Sticker
 
 class ThemeAdmin(admin.ModelAdmin):
     list_display = ('name', 'slug')
@@ -45,3 +45,18 @@ class RoomQuestionAdmin(admin.ModelAdmin):
 
 admin.site.register(RoomQuestion, RoomQuestionAdmin)
 
+
+class SmileAdmin(admin.ModelAdmin):
+    list_display = (
+        'smile',
+    )
+
+admin.site.register(Smile, SmileAdmin)
+
+
+class StickerAdmin(admin.ModelAdmin):
+    list_display = (
+        'sticker',
+    )
+
+admin.site.register(Sticker, StickerAdmin)

@@ -9,6 +9,8 @@ import uuid
 from backend.celery import app
 from backend.cent_client import CentClient
 from rest_framework.authtoken.models import Token
+import logging
+import random
 
 class Theme(models.Model):
     """
@@ -130,11 +132,12 @@ class RoomMessage(models.Model):
     user = models.ForeignKey(UserProfile, verbose_name=_(u'User'), on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
-
     def check_answer(self):
         answer = self.room.current_question.answers
         if self.text.upper() == answer:
             self.is_right = True
+            self.room.current_question=random.choice(Question.objects.all())
+
 
     def save(self, *args, **kwargs):
         if not self.pk:
@@ -146,6 +149,7 @@ class RoomMessage(models.Model):
     def send_quiz_message(id):
         obj = RoomMessage.objects.get(pk=id)
         print('Sending message %s' % id)
+        logging.info('Sending message %s' % id)
         cent_client = CentClient()
         from quiz.serializers.message import QuizRoomMessageSerializer
         from online.models import SocketConnection
@@ -158,3 +162,17 @@ class RoomMessage(models.Model):
                        }        
             cent_client.send(token.key, payload)
     
+
+class Smile(models.Model):
+    smile = models.URLField(blank=False, verbose_name=_(u'URL Smile'), max_length=50)
+
+class Sticker(models.Model):
+    sticker = models.URLField(blank=False, verbose_name=_(u'URL Sticker'), max_length=50)
+
+class RoomMessageSmile(models.Model):
+    smile = models.ForeignKey(Smile, verbose_name=_(u'smile'), on_delete=models.CASCADE)
+    message = models.ForeignKey(RoomMessage, verbose_name=_(u'message'), on_delete=models.CASCADE)
+
+class RoomMessageSticker(models.Model):
+    sticker = models.ForeignKey(Sticker, verbose_name=_(u'sticker'), on_delete=models.CASCADE)
+    message = models.ForeignKey(RoomMessage, verbose_name=_(u'message'), on_delete=models.CASCADE)
