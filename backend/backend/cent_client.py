@@ -12,3 +12,5 @@ class CentClient(object):
     def send(self,token,message):
         self.con.publish(token, message)
 
+    def getChannels(self):
+        return self.con.channels()
