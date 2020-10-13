@@ -6,6 +6,7 @@ from rest_framework.response import Response
 
 from account.serializers.init import InitSerializer
 from backend.serializers.noauth import NoAuthSerializer
+from contact.serializers.contact import ContactSerializer
 
 class InitView(APIView):
     '''
@@ -26,8 +27,12 @@ class InitView(APIView):
         token, created = Token.objects.get_or_create(user=request.user)
         user = request.user.userprofile
         user.is_online = True
+        contacts = []
+        for contact in user.get_contacts():
+            contacts.append(ContactSerializer(contact).data) 
         data = {
-            'token': token.key,
-            'user': user
+            'token': token.key, \
+            'user': user, \
+            'contacts': contacts \
         }
         return Response(InitSerializer(data).data)
