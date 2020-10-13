@@ -14,6 +14,7 @@ schema_view = get_schema_view(
       The `ReDoc` view can be found [here](/doc).
       The Mobile Ionic app can be found [here](/mobi).
       The Web app can be found [here](/web).
+      The Admin app can be found [here](/admin).
       ''',
       terms_of_service="https://www.google.com/policies/terms/",
       contact=openapi.Contact(email="zdimon77@gmail.com"),
