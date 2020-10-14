@@ -7,5 +7,6 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         for i in range(1000):
-            requests.get('http://localhost:7777/web/')
+            #requests.get('http://localhost:7777/web/')
+            requests.get('http://localhost:5000')
         print(datetime.now() - startTime)
