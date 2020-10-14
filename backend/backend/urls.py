@@ -26,6 +26,11 @@ schema_view = get_schema_view(
 
 from web.views import index_web, index_mobi
 
+from rest_framework.routers import DefaultRouter
+from quiz.views.theme import ThemeListViewSet
+router = DefaultRouter()
+router.register(r'theme', ThemeListViewSet, basename='theme')
+
 urlpatterns = [
     path('web/', index_web),
     path('mobi/', index_mobi),
@@ -39,7 +44,8 @@ urlpatterns = [
         path('account/',include('account.urls')),
         path('usermedia/',include('usermedia.urls')),
         path('chat/',include('chat.urls')),
-        path('contact/',include('contact.urls'))
+        path('contact/',include('contact.urls')),
+        path('quiz/',include('quiz.urls'))
     ])),
     path('swagger/<str:format>', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     path('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
@@ -53,3 +59,5 @@ from django.conf.urls.static import static
 
 urlpatterns += [
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+

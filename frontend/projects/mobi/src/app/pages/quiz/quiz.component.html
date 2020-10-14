@@ -1,0 +1,40 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-buttons  slot="start">
+        <ion-menu-button>
+          <img src='static/front_dist/mobi/svg/menu-sharp.svg'>
+        </ion-menu-button>
+      </ion-buttons>
+      <ion-title>Title</ion-title>
+      <ion-buttons  slot="end">
+        <ion-button routerLink="/index" color="primary">Back</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content [fullscreen]="true">
+   
+    
+    <div id="container">
+      
+  
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>Chat</ion-card-title>
+        </ion-card-header>
+      
+        <ion-card-content>
+          dsafsdfsdfsd
+        </ion-card-content>
+      </ion-card>
+
+      <ion-item lines="none">
+        <ion-textarea name="message" clearOnEdit="true" ></ion-textarea>
+        <ion-button (click)="doSubmit()" color="primary" expand="full" size="large">Send</ion-button>
+      </ion-item>
+
+  
+     
+    </div>
+  </ion-content>
+  

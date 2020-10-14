@@ -44,6 +44,7 @@ def index_mobi(request,slug='index'):
         html = f.read()
     soup = BeautifulSoup(html, 'html.parser')
     out = []
+    out_link = []
     for js in soup.find_all('script'):
         script_item = []
         try:
@@ -68,6 +69,21 @@ def index_mobi(request,slug='index'):
         out_html = '<script'+' '.join(script_item)+'></script>'
         #print(script_item)
         out.append(out_html)
+
+    for js in soup.find_all('link'):
+        link_item = []
+        try:
+            type = js['href']
+            link_item.append(' href="%s"' % js['href'])
+        except:
+            pass
+        try:
+            type = js['rel']
+            link_item.append(' rel="stylesheet"' )
+        except:
+            pass
+        out_html = '<link'+' '.join(link_item)+'>'
+        out_link.append(out_html)
     #print(out)
 
-    return render(request, 'index_mobi.html',{'scripts': out})
+    return render(request, 'index_mobi.html',{'scripts': out, 'links': out_link})
