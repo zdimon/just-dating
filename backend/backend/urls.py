@@ -34,7 +34,7 @@ router.register(r'theme', ThemeListViewSet, basename='theme')
 from schema_graph.views import Schema
 
 urlpatterns = [
-    path('web/', index_web),
+    path('web/', include('web.urls')),
     path('mobi/', index_mobi),
     path('mobi/folder/Inbox', index_mobi),
     path('mobi/<slug:slug>', index_mobi),
@@ -55,6 +55,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('doc/',include('doc.urls')),
     path("schema/", Schema.as_view())
+
+
 ]
 
 
