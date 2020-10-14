@@ -15,4 +15,7 @@ pyjwt
 cent
 wheel
 pytils
-psycopg2
+psycopg2-binary
+pygraphviz
+django-extensions
+django-schema-graph
