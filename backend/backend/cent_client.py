@@ -8,6 +8,9 @@ class CentClient(object):
         self.con = Client(CENT_URL, api_key=CENT_KEY, timeout=1)
 
     def send(self,token,message):
-        self.con.publish(token, message)
+        try:
+            self.con.publish(token, message)
+        except:
+            print('Centrifugo does not work!')
         #print(" HISTORY OF MESSAGES : ", self.con.history(token))
 
