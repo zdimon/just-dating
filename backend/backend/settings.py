@@ -51,7 +51,10 @@ INSTALLED_APPS = [
     'quiz',
     'contact',
     'favorite',
-    'blacklist'
+    'blacklist',
+    'django_extensions',
+    'doc',
+    'schema_graph'
 ]
 
 MIDDLEWARE = [

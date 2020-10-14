@@ -15,6 +15,7 @@ schema_view = get_schema_view(
       The Mobile Ionic app can be found [here](/mobi).
       The Web app can be found [here](/web).
       The Admin app can be found [here](/admin).
+      The Model graph can be found [here](/doc/model) or [here](/schema) .
       ''',
       terms_of_service="https://www.google.com/policies/terms/",
       contact=openapi.Contact(email="zdimon77@gmail.com"),
@@ -30,6 +31,7 @@ from rest_framework.routers import DefaultRouter
 from quiz.views.theme import ThemeListViewSet
 router = DefaultRouter()
 router.register(r'theme', ThemeListViewSet, basename='theme')
+from schema_graph.views import Schema
 
 urlpatterns = [
     path('web/', index_web),
@@ -51,6 +53,8 @@ urlpatterns = [
     path('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('doc', schema_view.with_ui('redoc', cache_timeout=0), name='schema-doc'),
     path('admin/', admin.site.urls),
+    path('doc/',include('doc.urls')),
+    path("schema/", Schema.as_view())
 ]
 
 

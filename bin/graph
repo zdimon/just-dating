@@ -1,0 +1,9 @@
+#!/bin/bash
+python3 -m venv venv
+. ./venv/bin/activate
+cd backend
+python3 manage.py graph_models account -o static/doc/account.png
+python3 manage.py graph_models chat -o static/doc/chat.png
+python3 manage.py graph_models contact -o static/doc/contact.png
+python3 manage.py graph_models usermedia -o static/doc/usermedia.png
+python3 manage.py graph_models quiz -o static/doc/quiz.png
