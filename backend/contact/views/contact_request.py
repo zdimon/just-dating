@@ -39,7 +39,7 @@ class ContactRequestAcceptView(APIView):
 
 class ContactRequestRefuseView(APIView):
     '''
-        Accepting a new request.
+        Refuse a new request.
 
         ____________________
     '''

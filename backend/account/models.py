@@ -53,7 +53,10 @@ class UserProfile(User):
             self.save()
             self.user_online_task.delay(self.id)
     
-    
+    """ def get_favourites(self):
+        from favourite.models import Favourite
+        return Favourite.objects.filter(owner=self) """
+
     @app.task
     def user_online_task(user_id):
         from account.serializers.profile import UserProfileSerializer

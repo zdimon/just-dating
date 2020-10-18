@@ -26,6 +26,7 @@ schema_view = get_schema_view(
 )
 
 from web.views import index_web, index_mobi
+from web.index.views import homepage
 
 from rest_framework.routers import DefaultRouter
 from quiz.views.theme import ThemeListViewSet
@@ -35,6 +36,7 @@ from schema_graph.views import Schema
 
 urlpatterns = [
     path('web/', include('web.urls')),
+    path('home/', homepage),
     path('mobi/', index_mobi),
     path('mobi/folder/Inbox', index_mobi),
     path('mobi/<slug:slug>', index_mobi),
@@ -47,6 +49,11 @@ urlpatterns = [
         path('usermedia/',include('usermedia.urls')),
         path('chat/',include('chat.urls')),
         path('contact/',include('contact.urls')),
+        path('favourite/',include('favorite.urls')),
+        path('blacklist/',include('blacklist.urls')),
+        path('like/',include('likeuser.urls')),
+        path('likemedia/',include('likemedia.urls')),
+        path('sympathy/',include('sympathy.urls')),
         path('quiz/',include('quiz.urls'))
     ])),
     path('swagger/<str:format>', schema_view.without_ui(cache_timeout=0), name='schema-json'),

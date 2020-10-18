@@ -87,3 +87,4 @@ def index_mobi(request,slug='index'):
     #print(out)
 
     return render(request, 'index_mobi.html',{'scripts': out, 'links': out_link})
+

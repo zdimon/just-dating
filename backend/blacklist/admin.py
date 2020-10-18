@@ -1,3 +1,6 @@
 from django.contrib import admin
+from blacklist.models import BlackList
 
-# Register your models here.
+@admin.register(BlackList)
+class BlackListAdmin(admin.ModelAdmin):
+    list_display = ['owner', 'blocked_user']

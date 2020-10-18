@@ -52,6 +52,9 @@ INSTALLED_APPS = [
     'contact',
     'favorite',
     'blacklist',
+    'likeuser',
+    'likemedia',
+    'sympathy',
     'django_extensions',
     'doc',
     'schema_graph'
