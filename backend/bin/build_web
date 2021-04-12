@@ -1,1 +1,2 @@
+cd ../frontend
 ng build web --watch
