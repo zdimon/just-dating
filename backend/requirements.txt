@@ -16,6 +16,6 @@ cent
 wheel
 pytils
 psycopg2-binary
-pygraphviz
+#pygraphviz
 django-extensions
 django-schema-graph
