@@ -1,8 +1,9 @@
-
 import { Injectable } from '@angular/core';
 import { webSocket } from "rxjs/webSocket";
 import { ReplaySubject, BehaviorSubject, Observable, Subscription, interval } from 'rxjs';
 import { SessionService } from './session.service';
+
+import {environment} from '../../environments/environment';
 
 // Store
 import { Store } from '@ngrx/store';
@@ -60,7 +61,7 @@ export class WsOnlineService {
     if(token) {
       this.conn_subscription.unsubscribe();
       this.connection  = webSocket({
-        url: "ws://localhost:7777/online/",
+        url: environment.onlineUrl,
         openObserver: {
           next: () => {
             this.login();

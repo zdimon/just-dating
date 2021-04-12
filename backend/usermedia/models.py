@@ -8,6 +8,7 @@ from backend.settings import BACKEND_URL
 from image_cropping.fields import ImageRatioField, ImageCropField
 from easy_thumbnails.files import get_thumbnailer
 
+
 class UserMedia(models.Model):
     TYPE_MEDIA = (
         ('photo', _('Photo')),
@@ -51,6 +52,12 @@ class UserMedia(models.Model):
     video = models.FileField(blank=True, upload_to='user_video')
     image = ImageCropField(blank=True, upload_to='user_photo')
     cropping = ImageRatioField('image', '80x80')
+    #likes = models.IntegerField(default=0)
+
+    @property
+    def likes(self):
+        from likemedia.models import LikeMedia
+        return LikeMedia.objects.filter(media=self).count()
 
     @property
     def image_tag(self):

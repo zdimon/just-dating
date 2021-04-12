@@ -1,5 +1,6 @@
 . ./venv/bin/activate
-./manage.py migrate
-./manage.py load_users
-./manage.py load_media
-./manage.py load_chat
+cd backend
+python3 manage.py migrate
+python3 manage.py load_users
+python3 manage.py load_media
+python3 manage.py load_chat

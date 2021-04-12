@@ -1,0 +1,22 @@
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch master
+# Your branch is up to date with 'origin/master'.
+#
+# Changes to be committed:
+	modified:   backend/quiz/admin.py
+	new file:   backend/quiz/migrations/0003_quiz_room_roommessage_roomquestion_roomusers.py
+	modified:   backend/quiz/models.py
+	new file:   backend/quiz/serializers/message.py
+	new file:   backend/quiz/serializers/quiz.py
+	new file:   backend/quiz/serializers/room.py
+	modified:   backend/quiz/urls.py
+	new file:   backend/quiz/views/message.py
+	new file:   backend/quiz/views/quiz.py
+	new file:   backend/quiz/views/room.py
+	modified:   bin/pull_fork
+#
+
+

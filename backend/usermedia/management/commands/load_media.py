@@ -27,7 +27,7 @@ class Command(BaseCommand):
                 for user in jdata[type]:
                     token = get_user_token(user['username'])
                     for image in user['images']:
-                        filepath = os.path.join(FIXTURES_PATH, 'images', '%s.jpeg' % user['username'])
+                        filepath = os.path.join(FIXTURES_PATH, 'images', '%s.jpg' % user['username'])
                         files = {'image': open(filepath,'rb')}
                         print(image)
                         rez = requests.post( \

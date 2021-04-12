@@ -8,11 +8,32 @@ from channels.layers import get_channel_layer
 from rest_framework.authtoken.models import Token
 from backend.cent_client import CentClient
 
+
 class ChatRoom(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     token = models.CharField(max_length=250,  default='', db_index=True)
     search_key = models.CharField(max_length=250, db_index=True)
+    has_contact = models.BooleanField(default=False)
+
+    def get_opponent(self,user):
+        for u in self.get_participants():
+            if u != user:
+                return u
+
+    def check_contact(self):
+        from contact.models import Contact
+        if not self.has_contact:
+            cnt = []
+            for user in self.get_participants():
+                cnt.append(ChatMessage.objects.filter(user=user).count())
+            if 0 not in cnt:
+                self.has_contact = True
+                self.save()
+                for user in self.get_participants():
+                    Contact.objects.create(owner=user, \
+                        room=self, \
+                        contact_user=self.get_opponent(user))
 
     def get_participants(self):
         out = []

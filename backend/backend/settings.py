@@ -48,6 +48,16 @@ INSTALLED_APPS = [
     'chat',
     'easy_thumbnails',
     'image_cropping' ,
+    'quiz',
+    'contact',
+    'favorite',
+    'blacklist',
+    'likeuser',
+    'likemedia',
+    'sympathy',
+    'django_extensions',
+    'doc',
+    'schema_graph'
 ]
 
 MIDDLEWARE = [
@@ -138,7 +148,7 @@ REST_FRAMEWORK = {
     'EXCEPTION_HANDLER': 'backend.error_handler.custom_exception_handler',
     'DEFAULT_PAGINATION_CLASS': 'backend.paginator.CustomPagination',
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
-    'PAGE_SIZE': 3,
+    'PAGE_SIZE': 10,
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.BasicAuthentication',
@@ -149,9 +159,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 MEDIA_URL = '/media/'
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static")
-]
+
 
 
 
@@ -166,4 +174,14 @@ CHANNEL_LAYERS = {
     },
 }
 
-from .local import *
+#from ._local import *
+API_URL = 'http://localhost:7777/v1/'
+BACKEND_URL = 'http://localhost:7777'
+CENT_URL='http://localhost:9999'
+CENT_KEY='e904b803-f695-4286-8af1-063b346a3955'
+
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static")
+]
+

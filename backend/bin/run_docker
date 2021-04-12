@@ -1,0 +1,3 @@
+. ./venv/bin/activate
+cd backend
+./manage.py runserver 7777

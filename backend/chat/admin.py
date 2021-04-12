@@ -10,5 +10,5 @@ class ChatRoom2UserInlineAdmin(admin.TabularInline):
 
 @admin.register(ChatRoom)
 class ChatRoomAdmin(admin.ModelAdmin):
-    list_display = ['created_at', 'token', 'search_key']
+    list_display = ['created_at', 'token', 'search_key', 'has_contact']
     inlines = [ChatRoom2UserInlineAdmin, ChatMessageInlineAdmin]

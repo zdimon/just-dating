@@ -34,7 +34,6 @@ import { SessionService } from './services/session.service';
 import { AuthService } from './services/auth.service';
 import { WsOnlineService } from './services/ws-online.service';
 import { ChatService } from './services/chat.service';
-import { CentService } from './services/cent.service';
 
 // Interceptors
 import { HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
@@ -78,8 +77,7 @@ export const interceptorProviders = [
     interceptorProviders,
     AuthService,
     WsOnlineService,
-    ChatService,
-    CentService
+    ChatService
   ]
 })
 export class CoreModule { }
