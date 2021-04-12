@@ -4,7 +4,7 @@ import json
 
 
 def main_page(request):
-    res = requests.get('http://localhost:7777/v1/account/user_list')
+    res = requests.get('/v1/account/user_list')
     data = json.loads(res.text)
     return render(request, 'web/index.html', {'users': data['payload'] })
 
