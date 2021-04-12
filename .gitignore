@@ -4,3 +4,5 @@ __pycache__
 backend/db.sqlite3
 frontend/package-lock.json
 tmp
+backend/backend/local.py
+

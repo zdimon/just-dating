@@ -1,0 +1,5 @@
+. ./venv/bin/activate
+python3 manage.py migrate
+python3 manage.py load_users
+python3 manage.py load_media
+python3 manage.py load_chat

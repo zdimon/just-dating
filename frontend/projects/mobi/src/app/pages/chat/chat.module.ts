@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ChatComponent } from './chat.component';
 
 import { IonicModule } from '@ionic/angular';
-import {CoreModule} from '../../../../../core/src/lib/core.module';
+
 import { ChatPageRoutingModule } from './routing';
 
 @NgModule({
@@ -12,7 +12,6 @@ import { ChatPageRoutingModule } from './routing';
   imports: [
     CommonModule,
     IonicModule,
-    CoreModule,
     ChatPageRoutingModule,
     FormsModule
   ]

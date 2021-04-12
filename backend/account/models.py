@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from decimal import Decimal
 from django.contrib.auth.models import User
+from django.utils.safestring import mark_safe
 
 from backend.celery import app
 from rest_framework.authtoken.models import Token
@@ -36,6 +37,10 @@ class UserProfile(User):
             return 'female'
         return 'male'
 
+    def get_contacts(self):
+        from contact.models import Contact
+        return Contact.objects.filter(owner=self)
+
     def update_online(self):
         from online.models import SocketConnection
         cnt = SocketConnection.objects.filter(user = self).count()
@@ -47,7 +52,10 @@ class UserProfile(User):
             self.is_online = True
             self.save()
             self.user_online_task.delay(self.id)
-        
+    
+    """ def get_favourites(self):
+        from favourite.models import Favourite
+        return Favourite.objects.filter(owner=self) """
 
     @app.task
     def user_online_task(user_id):
@@ -78,3 +86,13 @@ class UserProfile(User):
                     'type': 'user_offline', \
                     'message': UserProfileSerializer(payload_user).data \
                 })
+
+    @property
+    def get_main_photo(self):
+        from usermedia.models import UserMedia
+        try:
+            media = UserMedia.objects.get(user=self, is_main=True, type_media='photo')
+            return mark_safe('<img src="%s" />' % media.get_small_image_url)
+
+        except Exception as i:
+            return str(i)    

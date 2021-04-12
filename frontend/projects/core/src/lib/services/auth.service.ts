@@ -13,8 +13,8 @@ import { UserListState } from './../../store/states/user.state';
 // Services
 import { SessionService } from './session.service';
 import { SnackbarService } from './../services/snackbar.service';
-
 import { WsOnlineService } from './ws-online.service';
+import {CentService} from './cent.service';
 
 @Injectable({
   providedIn: 'root'
@@ -29,11 +29,13 @@ export class AuthService {
     private router: Router,
     private socketService: WsOnlineService,
     private userStore: Store<UserListState>,
+    private centService: CentService,
   ) { }
 
   public login(data: any) {
     this.api.login(data).subscribe((rez: any) => {
       this.sessionService.setToken(rez.token);
+      this.centService.connect();
       this.sessionStore.dispatch(new sessionActions.LogIn(rez));
       this.api.getUserList().subscribe(data => {
         this.userStore.dispatch(new userActions.UpdateUsers(data));
@@ -45,6 +47,7 @@ export class AuthService {
   }
 
   public logout() {
+     this.centService.disconnect();
      this.sessionStore.dispatch(new sessionActions.LogOut());
      this.sessionService.removeToken();
      this.socketService.disconnect();

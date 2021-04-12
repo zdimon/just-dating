@@ -21,5 +21,5 @@ class UserProfileSerializer(serializers.ModelSerializer):
         try:
             media = UserMedia.objects.get(user=obj, is_main=True, type_media='photo')
             return media.get_small_image_url
-        except:
-            return 'noimage.png'
+        except Exception as i:
+            return str(i)

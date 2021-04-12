@@ -1,3 +1,4 @@
+
 /* author Dmitry Zharikov zdimon77@gmail.com */
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -10,7 +11,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import {CoreModule} from '../../../core/src/lib/core.module';
-
+import { SingletoneModule } from './../../../core/src/lib/singletone.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // REDUX store
@@ -42,6 +43,7 @@ export function init_app(initService: InitService) {
   providers: [
     StatusBar,
     SplashScreen,
+    SingletoneModule,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     {
       provide: APP_INITIALIZER,
