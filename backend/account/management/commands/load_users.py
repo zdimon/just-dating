@@ -5,7 +5,9 @@ from account.models import UserProfile
 import requests
 from backend.settings import API_URL
 import os
-
+from django.test import RequestFactory
+factory = RequestFactory()
+from account.views.registration import RegistrationView
 
 class Command(BaseCommand):
 
@@ -27,9 +29,11 @@ class Command(BaseCommand):
                 print('Creating ... %s' % user['username'])
 
             for user in jdata['female']:
-                rez = requests.post(API_URL+'account/registration', json=user)
-                print(json.loads(rez.text)['message'])
+                request = factory.post(API_URL+'account/registration', data=user, content_type='application/json')
+                rez = RegistrationView.as_view()(request)
+                print(json.loads(rez.rendered_content)['message'])
 
             for user in jdata['male']:
-                rez = requests.post(API_URL+'account/registration', json=user)
-                print(json.loads(rez.text)['message'])
+                request = factory.post(API_URL+'account/registration', data=user, content_type='application/json')
+                rez = RegistrationView.as_view()(request)
+                print(json.loads(rez.rendered_content)['message'])
